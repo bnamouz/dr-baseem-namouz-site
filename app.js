@@ -92,35 +92,60 @@
   window.addEventListener('scroll', handleScroll, { passive: true });
 
   // ============================
-  // SCROLL ANIMATIONS
+  // SECTION REVEALS
   // ============================
   var fadeElements = document.querySelectorAll('.fade-in');
 
-  if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -40px 0px',
-      }
-    );
-
-    fadeElements.forEach(function (el) {
-      observer.observe(el);
+  function revealAllSections() {
+    fadeElements.forEach(function (el, index) {
+      setTimeout(function () {
+        el.classList.add('is-visible');
+      }, Math.min(index * 50, 400));
     });
-  } else {
-    // Fallback: show everything
+  }
+
+  revealAllSections();
+  window.addEventListener('load', revealAllSections);
+  window.addEventListener('pageshow', revealAllSections);
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
     fadeElements.forEach(function (el) {
       el.classList.add('is-visible');
     });
   }
+
+  // Safety fallback so no section stays hidden.
+  setTimeout(function () {
+    fadeElements.forEach(function (el) {
+      el.classList.add('is-visible');
+    });
+  }, 1000);
+
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) {
+      fadeElements.forEach(function (el) {
+        el.classList.add('is-visible');
+      });
+    }
+  });
+
+  window.addEventListener('scroll', function () {
+    fadeElements.forEach(function (el) {
+      el.classList.add('is-visible');
+    });
+  }, { passive: true, once: true });
+
+  window.addEventListener('touchstart', function () {
+    fadeElements.forEach(function (el) {
+      el.classList.add('is-visible');
+    });
+  }, { passive: true, once: true });
+
+  requestAnimationFrame(revealAllSections);
+
+  root.classList.add('animations-ready');
+
+
 
   // ============================
   // SMOOTH SCROLL FOR NAV LINKS

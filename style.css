@@ -334,6 +334,12 @@ html {
   overflow-y: auto;
 }
 
+@media (min-width: 768px) {
+  .mobile-nav {
+    display: none !important;
+  }
+}
+
 .mobile-nav.is-open {
   display: flex;
 }
@@ -545,10 +551,17 @@ html {
   position: relative;
 }
 
+.hero__image-wrapper--photo {
+  aspect-ratio: 4 / 4.6;
+  max-width: 420px;
+  background: linear-gradient(180deg, #fbfbfb 0%, #f3f7f8 100%);
+}
+
 .hero__image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
 }
 
 /* Decorative element behind hero image */
@@ -808,26 +821,14 @@ html {
   overflow: hidden;
   background: var(--color-surface-2);
   margin-inline: auto;
+  box-shadow: var(--shadow-md);
 }
 
-.about__photo-placeholder {
+.about__photo img {
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(
-    160deg,
-    var(--color-primary-light) 0%,
-    var(--color-surface-2) 100%
-  );
-}
-
-.about__photo-placeholder svg {
-  width: 120px;
-  height: 120px;
-  color: var(--color-primary);
-  opacity: 0.3;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .about__content h2 {
@@ -1076,6 +1077,105 @@ html {
   justify-content: center;
 }
 
+.cta-contact-details {
+  margin-top: var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2);
+  color: oklch(1 0 0 / 0.9);
+  font-size: var(--text-sm);
+}
+
+.cta-contact-details__item a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.reason-card__text a,
+.contact-info-box__item a,
+.footer__links a,
+.clinic-hours a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.clinic-hours {
+  margin-top: var(--space-8);
+  background: oklch(1 0 0 / 0.08);
+  border: 1px solid oklch(1 0 0 / 0.12);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  text-align: start;
+}
+
+.clinic-hours h3 {
+  color: #fff;
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-4);
+}
+
+.clinic-hours__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2);
+}
+
+.clinic-hours__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid oklch(1 0 0 / 0.08);
+  color: oklch(1 0 0 / 0.88);
+  font-size: var(--text-sm);
+}
+
+.clinic-hours__row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* ====================================================
+   CONTACT PAGE HELPERS
+   ==================================================== */
+
+.contact-info-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid oklch(from var(--color-text) l c h / 0.08);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-info-box__item {
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  font-size: var(--text-sm);
+}
+
+.contact-info-box__item strong {
+  color: var(--color-text);
+}
+
+.clinic-hours--light {
+  background: var(--color-surface);
+  border: 1px solid oklch(from var(--color-text) l c h / 0.08);
+}
+
+.clinic-hours--light h3 {
+  color: var(--color-text);
+}
+
+.clinic-hours--light .clinic-hours__row {
+  color: var(--color-text-muted);
+  border-bottom-color: oklch(from var(--color-text) l c h / 0.08);
+}
+
 /* ====================================================
    FOOTER
    ==================================================== */
@@ -1096,6 +1196,10 @@ html {
   .footer__inner {
     grid-template-columns: 2fr 1fr 1fr;
     gap: var(--space-12);
+  }
+
+  .cta-contact-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1120,6 +1224,12 @@ html {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+}
+
+.footer__links li span {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.7;
 }
 
 .footer__links a {
