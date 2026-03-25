@@ -628,6 +628,16 @@ html {
   }
 }
 
+.hero__institute-grid--logo-only {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .hero__institute-grid--logo-only {
+    grid-template-columns: minmax(280px, 360px) 1fr;
+  }
+}
+
 .hero__content {
   order: 1;
 }
@@ -740,6 +750,13 @@ html {
   place-items: center;
   padding: var(--space-3);
   margin-top: calc(var(--space-4) * -1);
+}
+
+.hero__logo-card--hero-only {
+  width: min(100%, 320px);
+  margin-top: 0;
+  padding: var(--space-4);
+  border-radius: 32px;
 }
 
 .hero__logo-card img {
