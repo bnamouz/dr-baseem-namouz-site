@@ -1009,51 +1009,92 @@ html {
    TREATMENTS SECTION
    ==================================================== */
 
-.treatments-grid {
+.service-cards {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-3);
+  gap: var(--space-5);
 }
 
-@media (min-width: 640px) {
-  .treatments-grid {
+@media (min-width: 720px) {
+  .service-cards {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width: 1024px) {
-  .treatments-grid {
-    grid-template-columns: repeat(4, 1fr);
+@media (min-width: 1100px) {
+  .service-cards {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.treatment-item {
+.service-card {
+  background: oklch(from var(--color-surface) l c h / 0.96);
+  border: 1px solid oklch(from var(--color-text) l c h / 0.06);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-interactive), box-shadow var(--transition-interactive);
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.service-card__media {
+  min-height: 190px;
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-4);
-  background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  border: 1px solid oklch(from var(--color-text) l c h / 0.06);
-  transition: background var(--transition-interactive);
+  justify-content: center;
+  color: var(--color-primary);
 }
 
-.treatment-item:hover {
-  background: var(--color-primary-light);
+.service-card__media svg {
+  width: 120px;
+  height: 120px;
 }
 
-.treatment-item__dot {
-  width: 10px;
-  height: 10px;
-  border-radius: var(--radius-full);
-  background: var(--color-primary);
-  flex-shrink: 0;
+.service-card__media--mint {
+  background: linear-gradient(180deg, #eef8f2 0%, #f9fdf9 100%);
 }
 
-.treatment-item__text {
-  font-size: var(--text-sm);
-  font-weight: 500;
+.service-card__media--sky {
+  background: linear-gradient(180deg, #edf7ff 0%, #fbfdff 100%);
+  color: #4a7da6;
+}
+
+.service-card__media--coral {
+  background: linear-gradient(180deg, #fff2ed 0%, #fffaf8 100%);
+  color: var(--color-accent);
+}
+
+.service-card__media--gold {
+  background: linear-gradient(180deg, #fff7e9 0%, #fffdf8 100%);
+  color: #c89a31;
+}
+
+.service-card__media--lavender {
+  background: linear-gradient(180deg, #f5f1ff 0%, #fcfbff 100%);
+  color: #8461b6;
+}
+
+.service-card__media--teal {
+  background: linear-gradient(180deg, #edf9f8 0%, #fbfefd 100%);
+  color: #2a8b8d;
+}
+
+.service-card__title {
+  font-size: var(--text-lg);
+  font-weight: 700;
   color: var(--color-text);
+  padding: var(--space-5) var(--space-5) var(--space-2);
+}
+
+.service-card__text {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  padding: 0 var(--space-5) var(--space-5);
 }
 
 /* ====================================================
