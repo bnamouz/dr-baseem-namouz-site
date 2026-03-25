@@ -914,6 +914,29 @@ html {
 }
 
 /* Reasons Grid */
+.vision-photo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-6);
+}
+
+.vision-photo__frame {
+  width: min(100%, 260px);
+  aspect-ratio: 4 / 5;
+  border-radius: 26px;
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  border: 1px solid oklch(from var(--color-text) l c h / 0.08);
+}
+
+.vision-photo__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
 .reasons-grid {
   display: grid;
   grid-template-columns: 1fr;
