@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="./style.css">
 </head>
 <body class="page-about">
-<a href="#main" class="skip-link">דלג לתוכן הראשי</a>
+<a href="#main" class="skip-link" data-i18n="skip">דלג לתוכן הראשי</a>
 <header class="header header--scrolled" id="header">
   <div class="container">
     <div class="header__inner">
@@ -38,19 +38,24 @@
           <circle cx="20" cy="12.5" r="1.2" fill="currentColor" opacity="0.6"/>
         </svg>
         <span class="header__logo-text">
-          <span class="header__logo-name">ד״ר בסים נמוז</span>
-          <span class="header__logo-sub">רופא ילדים מומחה</span>
+          <span class="header__logo-name" data-i18n="header.dr_name">ד״ר בסים נמוז</span>
+          <span class="header__logo-sub" data-i18n="header.dr_sub">רופא ילדים מומחה</span>
         </span>
       </a>
       <nav class="header__nav" aria-label="ניווט ראשי">
-        <a href="./index.html">דף הבית</a>
-        <a href="./about.html">אודות</a>
-        <a href="./treatments.html">תחומי טיפול</a>
-        <a href="./adhd.html">קשב וריכוז</a>
-        <a href="./clinicflow.html">אזור מטופלים</a>
-        <a href="./contact.html">יצירת קשר</a>
+        <a href="./index.html" data-i18n="nav.home">דף הבית</a>
+        <a href="./about.html" data-i18n="nav.about">אודות</a>
+        <a href="./treatments.html" data-i18n="nav.treatments">תחומי טיפול</a>
+        <a href="./adhd.html" data-i18n="nav.adhd">קשב וריכוז</a>
+        <a href="./clinicflow.html" data-i18n="nav.portal">אזור מטופלים</a>
+        <a href="./contact.html" data-i18n="nav.contact">יצירת קשר</a>
       </nav>
       <div class="header__actions">
+        <div class="lang-switch" role="group" aria-label="בחירת שפה">
+          <button class="lang-switch__btn is-active" type="button" data-lang-switch="he">עברית</button>
+          <button class="lang-switch__btn" type="button" data-lang-switch="ar">العربية</button>
+          <button class="lang-switch__btn" type="button" data-lang-switch="en">English</button>
+        </div>
         <button class="theme-toggle" data-theme-toggle aria-label="החלף למצב כהה">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
@@ -66,22 +71,22 @@
   </div>
 </header>
 <nav class="mobile-nav" id="mobile-nav" aria-label="תפריט נייד">
-  <a href="./index.html">דף הבית</a>
-  <a href="./about.html">אודות ד״ר בסים</a>
-  <a href="./treatments.html">תחומי טיפול</a>
-  <a href="./adhd.html">הפרעות קשב וריכוז</a>
-  <a href="./clinicflow.html">אזור מטופלים</a>
-  <a href="./contact.html">יצירת קשר</a>
-  <a href="./booking.html" class="mobile-nav__cta">קביעת תור</a>
+  <a href="./index.html" data-i18n="nav.home">דף הבית</a>
+  <a href="./about.html" data-i18n="nav.about_dr">אודות ד״ר בסים</a>
+  <a href="./treatments.html" data-i18n="nav.treatments">תחומי טיפול</a>
+  <a href="./adhd.html" data-i18n="nav.adhd_full">הפרעות קשב וריכוז</a>
+  <a href="./clinicflow.html" data-i18n="nav.portal">אזור מטופלים</a>
+  <a href="./contact.html" data-i18n="nav.contact">יצירת קשר</a>
+  <a href="./booking.html" class="mobile-nav__cta" data-i18n="nav.booking">קביעת תור</a>
 </nav>
 <main id="main">
   <section class="hero" aria-label="אודות">
     <div class="container">
       <div class="hero__inner">
         <div class="hero__content fade-in is-visible">
-          <div class="hero__badge">אודות</div>
-          <h1>אודות <span>ד״ר בסים נמוז</span></h1>
-          <p class="hero__subtitle">רופא ילדים מומחה, המעניק ליווי רפואי מקצועי, אישי ורגיש לילדים ולהורים, מתוך תפיסה רחבה של בריאות הילד והמשפחה.</p>
+          <div class="hero__badge" data-i18n="about.hero_badge">אודות</div>
+          <h1 data-i18n="about.hero_h1" data-i18n-html="true">אודות <span>ד״ר בסים נמוז</span></h1>
+          <p class="hero__subtitle" data-i18n="about.hero_subtitle">רופא ילדים מומחה, המעניק ליווי רפואי מקצועי, אישי ורגיש לילדים ולהורים, מתוך תפיסה רחבה של בריאות הילד והמשפחה.</p>
         </div>
         <div class="hero__visual fade-in is-visible">
           <div class="hero__image-wrapper hero__image-wrapper--photo">
@@ -95,13 +100,13 @@
   <section class="section">
     <div class="container container--narrow">
       <div class="section__header fade-in is-visible">
-        <span class="section__eyebrow">הסיפור המקצועי</span>
-        <h2 class="section__title">רפואה שמתחילה בהקשבה</h2>
+        <span class="section__eyebrow" data-i18n="about.s1_eyebrow">הסיפור המקצועי</span>
+        <h2 class="section__title" data-i18n="about.s1_title">רפואה שמתחילה בהקשבה</h2>
       </div>
       <div class="about-page__content fade-in is-visible">
-        <p>אני ד״ר בסים נמוז, רופא ילדים מומחה, ומאמין שרפואה טובה מתחילה קודם כול בהקשבה, באחריות ובקשר אישי עם הילד והמשפחה.</p>
-        <p>לאורך השנים ליוויתי ילדים והורים במגוון רחב של מצבים רפואיים, מתוך מטרה אחת ברורה: להעניק טיפול מקצועי, מדויק ואנושי, כזה שלא מתמקד רק בסימפטום, אלא רואה את הילד כולו.</p>
-        <p>מבחינתי, כל פגישה רפואית היא הזדמנות לעצור, להבין, לשאול את השאלות הנכונות, ולהתאים מענה נכון לצרכים של הילד ושל המשפחה. אני מאמין בשיח ברור, בגובה העיניים, ובהסבר שמאפשר להורים להרגיש בטוחים, רגועים ושותפים מלאים בתהליך.</p>
+        <p data-i18n="about.s1_p1">אני ד״ר בסים נמוז, רופא ילדים מומחה, ומאמין שרפואה טובה מתחילה קודם כול בהקשבה, באחריות ובקשר אישי עם הילד והמשפחה.</p>
+        <p data-i18n="about.s1_p2">לאורך השנים ליוויתי ילדים והורים במגוון רחב של מצבים רפואיים, מתוך מטרה אחת ברורה: להעניק טיפול מקצועי, מדויק ואנושי, כזה שלא מתמקד רק בסימפטום, אלא רואה את הילד כולו.</p>
+        <p data-i18n="about.s1_p3">מבחינתי, כל פגישה רפואית היא הזדמנות לעצור, להבין, לשאול את השאלות הנכונות, ולהתאים מענה נכון לצרכים של הילד ושל המשפחה. אני מאמין בשיח ברור, בגובה העיניים, ובהסבר שמאפשר להורים להרגיש בטוחים, רגועים ושותפים מלאים בתהליך.</p>
       </div>
     </div>
   </section>
@@ -109,21 +114,21 @@
   <section class="section section--alt">
     <div class="container">
       <div class="section__header fade-in is-visible">
-        <span class="section__eyebrow">הגישה שלי</span>
-        <h2 class="section__title">מקצועיות, רגישות וליווי אישי</h2>
+        <span class="section__eyebrow" data-i18n="about.s2_eyebrow">הגישה שלי</span>
+        <h2 class="section__title" data-i18n="about.s2_title">מקצועיות, רגישות וליווי אישי</h2>
       </div>
       <div class="reasons-grid">
         <div class="reason-card fade-in is-visible">
-          <h3 class="reason-card__title">הקשבה אמיתית</h3>
-          <p class="reason-card__text">להבין מה עובר על הילד, מה מטריד את ההורים, ומה באמת צריך לקרות כדי לעזור.</p>
+          <h3 class="reason-card__title" data-i18n="about.card1_title">הקשבה אמיתית</h3>
+          <p class="reason-card__text" data-i18n="about.card1_text">להבין מה עובר על הילד, מה מטריד את ההורים, ומה באמת צריך לקרות כדי לעזור.</p>
         </div>
         <div class="reason-card fade-in is-visible">
-          <h3 class="reason-card__title">בדיקה יסודית</h3>
-          <p class="reason-card__text">לבחון את התמונה המלאה, לחשוב בצורה רחבה, ולפעול מתוך אחריות מקצועית.</p>
+          <h3 class="reason-card__title" data-i18n="about.card2_title">בדיקה יסודית</h3>
+          <p class="reason-card__text" data-i18n="about.card2_text">לבחון את התמונה המלאה, לחשוב בצורה רחבה, ולפעול מתוך אחריות מקצועית.</p>
         </div>
         <div class="reason-card fade-in is-visible">
-          <h3 class="reason-card__title">הסבר בגובה העיניים</h3>
-          <p class="reason-card__text">לתת להורים תחושת ביטחון, סדר והבנה, כדי שיוכלו לקבל החלטות מתוך שקט.</p>
+          <h3 class="reason-card__title" data-i18n="about.card3_title">הסבר בגובה העיניים</h3>
+          <p class="reason-card__text" data-i18n="about.card3_text">לתת להורים תחושת ביטחון, סדר והבנה, כדי שיוכלו לקבל החלטות מתוך שקט.</p>
         </div>
       </div>
     </div>
@@ -132,25 +137,25 @@
   <section class="section">
     <div class="container">
       <div class="section__header fade-in is-visible">
-        <span class="section__eyebrow">תחומי עיסוק</span>
-        <h2 class="section__title">מענה רפואי רחב</h2>
+        <span class="section__eyebrow" data-i18n="about.s3_eyebrow">תחומי עיסוק</span>
+        <h2 class="section__title" data-i18n="about.s3_title">מענה רפואי רחב</h2>
       </div>
       <div class="treatments-grid">
-        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text">רפואת ילדים כללית</span></div>
-        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text">ייעוץ והכוונה להורים</span></div>
-        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text">הערכה ומעקב רפואי</span></div>
-        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text">אבחון וליווי בהפרעות קשב וריכוז</span></div>
+        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text" data-i18n="about.t1">רפואת ילדים כללית</span></div>
+        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text" data-i18n="about.t2">ייעוץ והכוונה להורים</span></div>
+        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text" data-i18n="about.t3">הערכה ומעקב רפואי</span></div>
+        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text" data-i18n="about.t4">אבחון וליווי בהפרעות קשב וריכוז</span></div>
       </div>
     </div>
   </section>
 
   <section class="cta-section" id="contact" aria-label="יצירת קשר">
     <div class="container">
-      <h2 class="fade-in is-visible">רוצים לקבוע תור או לשאול שאלה?</h2>
-      <p class="fade-in is-visible">אפשר ליצור קשר עם מזכירת המרפאה בוואטסאפ, בטלפון או במייל, ונשמח לעזור.</p>
+      <h2 class="fade-in is-visible" data-i18n="about.cta_title">רוצים לקבוע תור או לשאול שאלה?</h2>
+      <p class="fade-in is-visible" data-i18n="about.cta_desc">אפשר ליצור קשר עם מזכירת המרפאה בוואטסאפ, בטלפון או במייל, ונשמח לעזור.</p>
       <div class="cta-buttons fade-in is-visible">
-        <a href="https://wa.me/972544020043" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--large">קביעת תור בוואטסאפ</a>
-        <a href="./index.html#contact" class="btn btn--outline btn--large">לפרטי קשר מלאים</a>
+        <a href="https://wa.me/972544020043" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--large" data-i18n="about.cta_whatsapp">קביעת תור בוואטסאפ</a>
+        <a href="./index.html#contact" class="btn btn--outline btn--large" data-i18n="about.cta_contact">לפרטי קשר מלאים</a>
       </div>
     </div>
   </section>
@@ -161,20 +166,20 @@
       <div class="footer__brand">
         <a href="./index.html" class="header__logo" aria-label="ד״ר בסים נמוז — דף הבית">
           <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="36" height="36"><circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1.5" opacity="0.15"/><path d="M20 10c-3.5 0-6.5 2.5-6.5 6.5 0 5 6.5 13.5 6.5 13.5s6.5-8.5 6.5-13.5c0-4-3-6.5-6.5-6.5z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M18 16h4M20 14v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="20" cy="12.5" r="1.2" fill="currentColor" opacity="0.6"/></svg>
-          <span class="header__logo-text"><span class="header__logo-name">ד״ר בסים נמוז</span><span class="header__logo-sub">רופא ילדים מומחה</span></span>
+          <span class="header__logo-text"><span class="header__logo-name" data-i18n="footer.dr_name">ד״ר בסים נמוז</span><span class="header__logo-sub" data-i18n="footer.dr_sub">רופא ילדים מומחה</span></span>
         </a>
       </div>
       <div class="footer__links">
-        <h4>ניווט מהיר</h4>
+        <h4 data-i18n="footer.nav_title">ניווט מהיר</h4>
         <ul role="list">
-          <li><a href="./index.html">דף הבית</a></li>
-          <li><a href="./about.html">אודות</a></li>
-          <li><a href="./adhd.html">קשב וריכוז</a></li>
-          <li><a href="./clinicflow.html">אזור מטופלים</a></li>
+          <li><a href="./index.html" data-i18n="nav.home">דף הבית</a></li>
+          <li><a href="./about.html" data-i18n="nav.about">אודות</a></li>
+          <li><a href="./adhd.html" data-i18n="nav.adhd">קשב וריכוז</a></li>
+          <li><a href="./clinicflow.html" data-i18n="nav.portal">אזור מטופלים</a></li>
         </ul>
       </div>
       <div class="footer__links">
-        <h4>צרו קשר</h4>
+        <h4 data-i18n="footer.contact_section">צרו קשר</h4>
         <ul role="list">
           <li><a href="tel:+972544020043">054-402-0043</a></li>
           <li><a href="mailto:Bnamouz@gmail.com">Bnamouz@gmail.com</a></li>
@@ -182,7 +187,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <span>© 2026 ד״ר בסים נמוז. כל הזכויות שמורות.</span>
+      <span data-i18n="footer.copy_dr">© 2026 ד״ר בסים נמוז. כל הזכויות שמורות.</span>
       <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
     </div>
   </div>

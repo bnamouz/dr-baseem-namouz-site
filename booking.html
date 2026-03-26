@@ -26,23 +26,28 @@
 <link rel="stylesheet" href="./style.css">
 </head>
 <body class="page-booking">
-<a href="#main" class="skip-link">דלג לתוכן הראשי</a>
+<a href="#main" class="skip-link" data-i18n="skip">דלג לתוכן הראשי</a>
 <header class="header header--scrolled" id="header">
   <div class="container">
     <div class="header__inner">
       <a href="./index.html" class="header__logo" aria-label="ד״ר בסים נמוז — דף הבית">
         <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1.5" opacity="0.15"/><path d="M20 10c-3.5 0-6.5 2.5-6.5 6.5 0 5 6.5 13.5 6.5 13.5s6.5-8.5 6.5-13.5c0-4-3-6.5-6.5-6.5z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M18 16h4M20 14v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="20" cy="12.5" r="1.2" fill="currentColor" opacity="0.6"/></svg>
-        <span class="header__logo-text"><span class="header__logo-name">ד״ר בסים נמוז</span><span class="header__logo-sub">רופא ילדים מומחה</span></span>
+        <span class="header__logo-text"><span class="header__logo-name" data-i18n="header.dr_name">ד״ר בסים נמוז</span><span class="header__logo-sub" data-i18n="header.dr_sub">רופא ילדים מומחה</span></span>
       </a>
       <nav class="header__nav" aria-label="ניווט ראשי">
-        <a href="./index.html">דף הבית</a>
-        <a href="./about.html">אודות</a>
-        <a href="./treatments.html">תחומי טיפול</a>
-        <a href="./adhd.html">קשב וריכוז</a>
-        <a href="./clinicflow.html">אזור מטופלים</a>
-        <a href="./contact.html">יצירת קשר</a>
+        <a href="./index.html" data-i18n="nav.home">דף הבית</a>
+        <a href="./about.html" data-i18n="nav.about">אודות</a>
+        <a href="./treatments.html" data-i18n="nav.treatments">תחומי טיפול</a>
+        <a href="./adhd.html" data-i18n="nav.adhd">קשב וריכוז</a>
+        <a href="./clinicflow.html" data-i18n="nav.portal">אזור מטופלים</a>
+        <a href="./contact.html" data-i18n="nav.contact">יצירת קשר</a>
       </nav>
       <div class="header__actions">
+        <div class="lang-switch" role="group" aria-label="בחירת שפה">
+          <button class="lang-switch__btn is-active" type="button" data-lang-switch="he">עברית</button>
+          <button class="lang-switch__btn" type="button" data-lang-switch="ar">العربية</button>
+          <button class="lang-switch__btn" type="button" data-lang-switch="en">English</button>
+        </div>
         <button class="theme-toggle" data-theme-toggle aria-label="החלף למצב כהה">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
@@ -58,24 +63,24 @@
   </div>
 </header>
 <nav class="mobile-nav" id="mobile-nav" aria-label="תפריט נייד">
-  <a href="./index.html">דף הבית</a>
-  <a href="./about.html">אודות ד״ר בסים</a>
-  <a href="./treatments.html">תחומי טיפול</a>
-  <a href="./adhd.html">הפרעות קשב וריכוז</a>
-  <a href="./contact.html">יצירת קשר</a>
-  <a href="./booking.html" class="mobile-nav__cta">קביעת תור</a>
+  <a href="./index.html" data-i18n="nav.home">דף הבית</a>
+  <a href="./about.html" data-i18n="nav.about_dr">אודות ד״ר בסים</a>
+  <a href="./treatments.html" data-i18n="nav.treatments">תחומי טיפול</a>
+  <a href="./adhd.html" data-i18n="nav.adhd_full">הפרעות קשב וריכוז</a>
+  <a href="./contact.html" data-i18n="nav.contact">יצירת קשר</a>
+  <a href="./booking.html" class="mobile-nav__cta" data-i18n="nav.booking">קביעת תור</a>
 </nav>
 <main id="main">
   <section class="hero" aria-label="קביעת תור">
     <div class="container">
       <div class="hero__inner">
         <div class="hero__content fade-in is-visible">
-          <div class="hero__badge">קביעת תור</div>
-          <h1>קביעת תור <span>בדרך פשוטה וברורה</span></h1>
-          <p class="hero__subtitle">לצורך קבלת תור יש ליצור קשר בהודעת וואטסאפ עם מזכירת המרפאה. אפשר גם לפנות דרך אתר מכבי או ליצור קשר טלפוני.</p>
+          <div class="hero__badge" data-i18n="booking.hero_badge">קביעת תור</div>
+          <h1 data-i18n="booking.hero_h1" data-i18n-html="true">קביעת תור <span>בדרך פשוטה וברורה</span></h1>
+          <p class="hero__subtitle" data-i18n="booking.hero_subtitle">לצורך קבלת תור יש ליצור קשר בהודעת וואטסאפ עם מזכירת המרפאה. אפשר גם לפנות דרך אתר מכבי או ליצור קשר טלפוני.</p>
           <div class="hero__buttons">
-            <a href="https://wa.me/972544020043" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--large">קביעת תור בוואטסאפ</a>
-            <a href="tel:+972544020043" class="btn btn--secondary btn--large">התקשרו למרפאה</a>
+            <a href="https://wa.me/972544020043" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--large" data-i18n="booking.btn_whatsapp" data-i18n="booking.cta_whatsapp">קביעת תור בוואטסאפ</a>
+            <a href="tel:+972544020043" class="btn btn--secondary btn--large" data-i18n="booking.btn_call">התקשרו למרפאה</a>
           </div>
         </div>
         <div class="hero__visual fade-in is-visible">
@@ -90,13 +95,13 @@
   <section class="section">
     <div class="container">
       <div class="section__header fade-in is-visible">
-        <span class="section__eyebrow">איך קובעים תור</span>
-        <h2 class="section__title">שלושה צעדים פשוטים</h2>
+        <span class="section__eyebrow" data-i18n="booking.s1_eyebrow">איך קובעים תור</span>
+        <h2 class="section__title" data-i18n="booking.s1_title">שלושה צעדים פשוטים</h2>
       </div>
       <div class="reasons-grid">
-        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title">פונים למזכירה</h3><p class="reason-card__text">שולחים הודעת וואטסאפ למזכירת המרפאה עם שם הילד וסיבת הפנייה.</p></div>
-        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title">מקבלים הכוונה</h3><p class="reason-card__text">המזכירה מסייעת בבחירת מסלול מתאים ובהשלמת פרטים לתיאום.</p></div>
-        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title">מתאמים מועד</h3><p class="reason-card__text">הפגישה נקבעת לפי זמני הקבלה של המרפאה ובתיאום מראש.</p></div>
+        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title" data-i18n="booking.card1_title">פונים למזכירה</h3><p class="reason-card__text" data-i18n="booking.card1_text">שולחים הודעת וואטסאפ למזכירת המרפאה עם שם הילד וסיבת הפנייה.</p></div>
+        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title" data-i18n="booking.card2_title">מקבלים הכוונה</h3><p class="reason-card__text" data-i18n="booking.card2_text">המזכירה מסייעת בבחירת מסלול מתאים ובהשלמת פרטים לתיאום.</p></div>
+        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title" data-i18n="booking.card3_title">מתאמים מועד</h3><p class="reason-card__text" data-i18n="booking.card3_text">הפגישה נקבעת לפי זמני הקבלה של המרפאה ובתיאום מראש.</p></div>
       </div>
     </div>
   </section>
@@ -105,26 +110,26 @@
     <div class="container">
       <div class="about-grid">
         <div class="fade-in is-visible">
-          <span class="section__eyebrow">אפשרויות תיאום</span>
-          <h2 class="section__title">איך הכי נוח לכם לפנות</h2>
+          <span class="section__eyebrow" data-i18n="booking.s2_eyebrow">אפשרויות תיאום</span>
+          <h2 class="section__title" data-i18n="booking.s2_title">איך הכי נוח לכם לפנות</h2>
           <div class="contact-info-box">
-            <div class="contact-info-box__item"><strong>וואטסאפ למזכירה:</strong> <a href="https://wa.me/972544020043" target="_blank" rel="noopener noreferrer">054-402-0043</a></div>
-            <div class="contact-info-box__item"><strong>טלפון:</strong> <a href="tel:+972544020043">054-402-0043</a></div>
-            <div class="contact-info-box__item"><strong>מייל:</strong> <a href="mailto:Bnamouz@gmail.com">Bnamouz@gmail.com</a></div>
-            <div class="contact-info-box__item"><strong>דרך מכבי:</strong> ניתן לפנות גם דרך אתר מכבי.</div>
+            <div class="contact-info-box__item"><strong data-i18n="booking.info_wa_label">וואטסאפ למזכירה:</strong> <a href="https://wa.me/972544020043" target="_blank" rel="noopener noreferrer">054-402-0043</a></div>
+            <div class="contact-info-box__item"><strong data-i18n="booking.info_phone_label">טלפון:</strong> <a href="tel:+972544020043">054-402-0043</a></div>
+            <div class="contact-info-box__item"><strong data-i18n="booking.info_email_label">מייל:</strong> <a href="mailto:Bnamouz@gmail.com">Bnamouz@gmail.com</a></div>
+            <div class="contact-info-box__item"><strong data-i18n="booking.info_maccabi_label">דרך מכבי:</strong> <span data-i18n="booking.info_maccabi_value">ניתן לפנות גם דרך אתר מכבי.</span></div>
           </div>
         </div>
         <div class="fade-in is-visible">
           <div class="clinic-hours clinic-hours--light">
-            <h3>שעות קבלת קהל</h3>
+            <h3 data-i18n="booking.hours_title">שעות קבלת קהל</h3>
             <div class="clinic-hours__grid">
-              <div class="clinic-hours__row"><span>יום א׳</span><span>אין קבלת קהל</span></div>
-              <div class="clinic-hours__row"><span>יום ב׳</span><span>09:00–16:00</span></div>
-              <div class="clinic-hours__row"><span>יום ג׳</span><span>16:00–20:00</span></div>
-              <div class="clinic-hours__row"><span>יום ד׳</span><span>16:00–20:00</span></div>
-              <div class="clinic-hours__row"><span>יום ה׳</span><span>17:00–20:00</span></div>
-              <div class="clinic-hours__row"><span>יום ו׳</span><span>09:30–12:30</span></div>
-              <div class="clinic-hours__row"><span>יום ש׳</span><span>09:30–12:30</span></div>
+              <div class="clinic-hours__row"><span data-i18n="booking.day1">יום א׳</span><span data-i18n="booking.day1_hours">אין קבלת קהל</span></div>
+              <div class="clinic-hours__row"><span data-i18n="booking.day2">יום ב׳</span><span data-i18n="booking.day2_hours">09:00–16:00</span></div>
+              <div class="clinic-hours__row"><span data-i18n="booking.day3">יום ג׳</span><span data-i18n="booking.day3_hours">16:00–20:00</span></div>
+              <div class="clinic-hours__row"><span data-i18n="booking.day4">יום ד׳</span><span data-i18n="booking.day4_hours">16:00–20:00</span></div>
+              <div class="clinic-hours__row"><span data-i18n="booking.day5">יום ה׳</span><span data-i18n="booking.day5_hours">17:00–20:00</span></div>
+              <div class="clinic-hours__row"><span data-i18n="booking.day6">יום ו׳</span><span data-i18n="booking.day6_hours">09:30–12:30</span></div>
+              <div class="clinic-hours__row"><span data-i18n="booking.day7">יום ש׳</span><span data-i18n="booking.day7_hours">09:30–12:30</span></div>
             </div>
           </div>
         </div>
@@ -134,11 +139,11 @@
 
   <section class="cta-section">
     <div class="container">
-      <h2 class="fade-in is-visible">מוכנים לקבוע?</h2>
-      <p class="fade-in is-visible">הדרך המהירה ביותר היא לשלוח הודעת וואטסאפ למזכירת המרפאה.</p>
+      <h2 class="fade-in is-visible" data-i18n="booking.cta_title">מוכנים לקבוע?</h2>
+      <p class="fade-in is-visible" data-i18n="booking.cta_desc">הדרך המהירה ביותר היא לשלוח הודעת וואטסאפ למזכירת המרפאה.</p>
       <div class="cta-buttons fade-in is-visible">
         <a href="https://wa.me/972544020043" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--large">קביעת תור בוואטסאפ</a>
-        <a href="./contact.html" class="btn btn--outline btn--large">ליצירת קשר</a>
+        <a href="./contact.html" class="btn btn--outline btn--large" data-i18n="booking.cta_contact">ליצירת קשר</a>
       </div>
     </div>
   </section>
@@ -146,11 +151,11 @@
 <footer class="footer">
   <div class="container">
     <div class="footer__inner">
-      <div class="footer__brand"><a href="./index.html" class="header__logo" aria-label="ד״ר בסים נמוז — דף הבית"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="36" height="36"><circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1.5" opacity="0.15"/><path d="M20 10c-3.5 0-6.5 2.5-6.5 6.5 0 5 6.5 13.5 6.5 13.5s6.5-8.5 6.5-13.5c0-4-3-6.5-6.5-6.5z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M18 16h4M20 14v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="20" cy="12.5" r="1.2" fill="currentColor" opacity="0.6"/></svg><span class="header__logo-text"><span class="header__logo-name">ד״ר בסים נמוז</span><span class="header__logo-sub">רופא ילדים מומחה</span></span></a></div>
-      <div class="footer__links"><h4>ניווט מהיר</h4><ul role="list"><li><a href="./about.html">אודות</a></li><li><a href="./treatments.html">תחומי טיפול</a></li><li><a href="./clinicflow.html">אזור מטופלים</a></li><li><a href="./contact.html">יצירת קשר</a></li></ul></div>
-      <div class="footer__links"><h4>צרו קשר</h4><ul role="list"><li><a href="tel:+972544020043">054-402-0043</a></li><li><a href="mailto:Bnamouz@gmail.com">Bnamouz@gmail.com</a></li></ul></div>
+      <div class="footer__brand"><a href="./index.html" class="header__logo" aria-label="ד״ר בסים נמוז — דף הבית"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="36" height="36"><circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1.5" opacity="0.15"/><path d="M20 10c-3.5 0-6.5 2.5-6.5 6.5 0 5 6.5 13.5 6.5 13.5s6.5-8.5 6.5-13.5c0-4-3-6.5-6.5-6.5z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M18 16h4M20 14v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="20" cy="12.5" r="1.2" fill="currentColor" opacity="0.6"/></svg><span class="header__logo-text"><span class="header__logo-name" data-i18n="footer.dr_name">ד״ר בסים נמוז</span><span class="header__logo-sub" data-i18n="footer.dr_sub">רופא ילדים מומחה</span></span></a></div>
+      <div class="footer__links"><h4 data-i18n="footer.nav_title">ניווט מהיר</h4><ul role="list"><li><a href="./about.html" data-i18n="nav.about">אודות</a></li><li><a href="./treatments.html" data-i18n="nav.treatments">תחומי טיפול</a></li><li><a href="./clinicflow.html" data-i18n="nav.portal">אזור מטופלים</a></li><li><a href="./contact.html" data-i18n="nav.contact">יצירת קשר</a></li></ul></div>
+      <div class="footer__links"><h4 data-i18n="footer.contact_section">צרו קשר</h4><ul role="list"><li><a href="tel:+972544020043">054-402-0043</a></li><li><a href="mailto:Bnamouz@gmail.com">Bnamouz@gmail.com</a></li></ul></div>
     </div>
-    <div class="footer__bottom"><span>© 2026 ד״ר בסים נמוז. כל הזכויות שמורות.</span><a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a></div>
+    <div class="footer__bottom"><span data-i18n="footer.copy_dr">© 2026 ד״ר בסים נמוז. כל הזכויות שמורות.</span><a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a></div>
   </div>
 </footer>
 <script defer src="./app.js"></script>

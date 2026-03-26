@@ -26,23 +26,28 @@
 <link rel="stylesheet" href="./style.css">
 </head>
 <body class="page-treatments">
-<a href="#main" class="skip-link">דלג לתוכן הראשי</a>
+<a href="#main" class="skip-link" data-i18n="skip">דלג לתוכן הראשי</a>
 <header class="header header--scrolled" id="header">
   <div class="container">
     <div class="header__inner">
       <a href="./index.html" class="header__logo" aria-label="ד״ר בסים נמוז — דף הבית">
         <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1.5" opacity="0.15"/><path d="M20 10c-3.5 0-6.5 2.5-6.5 6.5 0 5 6.5 13.5 6.5 13.5s6.5-8.5 6.5-13.5c0-4-3-6.5-6.5-6.5z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M18 16h4M20 14v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="20" cy="12.5" r="1.2" fill="currentColor" opacity="0.6"/></svg>
-        <span class="header__logo-text"><span class="header__logo-name">ד״ר בסים נמוז</span><span class="header__logo-sub">רופא ילדים מומחה</span></span>
+        <span class="header__logo-text"><span class="header__logo-name" data-i18n="header.dr_name">ד״ר בסים נמוז</span><span class="header__logo-sub" data-i18n="header.dr_sub">רופא ילדים מומחה</span></span>
       </a>
       <nav class="header__nav" aria-label="ניווט ראשי">
-        <a href="./index.html">דף הבית</a>
-        <a href="./about.html">אודות</a>
-        <a href="./treatments.html">תחומי טיפול</a>
-        <a href="./adhd.html">קשב וריכוז</a>
-        <a href="./clinicflow.html">אזור מטופלים</a>
-        <a href="./contact.html">יצירת קשר</a>
+        <a href="./index.html" data-i18n="nav.home">דף הבית</a>
+        <a href="./about.html" data-i18n="nav.about">אודות</a>
+        <a href="./treatments.html" data-i18n="nav.treatments">תחומי טיפול</a>
+        <a href="./adhd.html" data-i18n="nav.adhd">קשב וריכוז</a>
+        <a href="./clinicflow.html" data-i18n="nav.portal">אזור מטופלים</a>
+        <a href="./contact.html" data-i18n="nav.contact">יצירת קשר</a>
       </nav>
       <div class="header__actions">
+        <div class="lang-switch" role="group" aria-label="בחירת שפה">
+          <button class="lang-switch__btn is-active" type="button" data-lang-switch="he">עברית</button>
+          <button class="lang-switch__btn" type="button" data-lang-switch="ar">العربية</button>
+          <button class="lang-switch__btn" type="button" data-lang-switch="en">English</button>
+        </div>
         <button class="theme-toggle" data-theme-toggle aria-label="החלף למצב כהה">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
@@ -58,24 +63,24 @@
   </div>
 </header>
 <nav class="mobile-nav" id="mobile-nav" aria-label="תפריט נייד">
-  <a href="./index.html">דף הבית</a>
-  <a href="./about.html">אודות ד״ר בסים</a>
-  <a href="./treatments.html">תחומי טיפול</a>
-  <a href="./adhd.html">הפרעות קשב וריכוז</a>
-  <a href="./contact.html">יצירת קשר</a>
-  <a href="./booking.html" class="mobile-nav__cta">קביעת תור</a>
+  <a href="./index.html" data-i18n="nav.home">דף הבית</a>
+  <a href="./about.html" data-i18n="nav.about_dr">אודות ד״ר בסים</a>
+  <a href="./treatments.html" data-i18n="nav.treatments">תחומי טיפול</a>
+  <a href="./adhd.html" data-i18n="nav.adhd_full">הפרעות קשב וריכוז</a>
+  <a href="./contact.html" data-i18n="nav.contact">יצירת קשר</a>
+  <a href="./booking.html" class="mobile-nav__cta" data-i18n="nav.booking">קביעת תור</a>
 </nav>
 <main id="main">
   <section class="hero" aria-label="תחומי טיפול">
     <div class="container">
       <div class="hero__inner">
         <div class="hero__content fade-in is-visible">
-          <div class="hero__badge">תחומי טיפול</div>
-          <h1>מענה רפואי רחב <span>לילדים ולהורים</span></h1>
-          <p class="hero__subtitle">האתר מרכז מגוון שירותים רפואיים ותחומי ליווי עבור ילדים והורים, מתוך מטרה להעניק טיפול איכותי, ברור ומותאם אישית.</p>
+          <div class="hero__badge" data-i18n="treatments.hero_badge">תחומי טיפול</div>
+          <h1 data-i18n="treatments.hero_h1" data-i18n-html="true">מענה רפואי רחב <span>לילדים ולהורים</span></h1>
+          <p class="hero__subtitle" data-i18n="treatments.hero_subtitle">האתר מרכז מגוון שירותים רפואיים ותחומי ליווי עבור ילדים והורים, מתוך מטרה להעניק טיפול איכותי, ברור ומותאם אישית.</p>
           <div class="hero__buttons">
-            <a href="./booking.html" class="btn btn--primary btn--large">לקביעת תור</a>
-            <a href="./contact.html" class="btn btn--secondary btn--large">ליצירת קשר</a>
+            <a href="./booking.html" class="btn btn--primary btn--large" data-i18n="treatments.btn_booking">לקביעת תור</a>
+            <a href="./contact.html" class="btn btn--secondary btn--large" data-i18n="treatments.btn_contact">ליצירת קשר</a>
           </div>
         </div>
         <div class="hero__visual fade-in is-visible">
@@ -90,14 +95,14 @@
   <section class="section section--alt">
     <div class="container">
       <div class="section__header fade-in is-visible">
-        <span class="section__eyebrow">מעטפת מקצועית</span>
-        <h2 class="section__title">השירותים המרכזיים במרפאה</h2>
+        <span class="section__eyebrow" data-i18n="treatments.s1_eyebrow">מעטפת מקצועית</span>
+        <h2 class="section__title" data-i18n="treatments.s1_title">השירותים המרכזיים במרפאה</h2>
       </div>
       <div class="reasons-grid">
-        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title">רפואת ילדים כללית</h3><p class="reason-card__text">בדיקות, הערכות, ליווי רפואי ומענה מקצועי למגוון מצבים שכיחים בילדות.</p></div>
-        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title">ייעוץ להורים</h3><p class="reason-card__text">הכוונה מקצועית בשפה ברורה ונגישה, כדי לעזור להורים להבין את המצב ולקבל החלטות בביטחון.</p></div>
-        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title">מעקב רפואי</h3><p class="reason-card__text">ליווי לאורך זמן במצבים שבהם נדרש מעקב, בקרה, חזרה לבדיקות והתאמת המשך הדרך.</p></div>
-        <div class="reason-card reason-card--accent fade-in is-visible"><h3 class="reason-card__title">הפרעות קשב וריכוז</h3><p class="reason-card__text">בירור, הערכה וליווי בתחום הפרעות קשב וריכוז, מתוך הסתכלות רחבה על הילד, המשפחה והתפקוד.</p></div>
+        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title" data-i18n="treatments.card1_title">רפואת ילדים כללית</h3><p class="reason-card__text" data-i18n="treatments.card1_text">בדיקות, הערכות, ליווי רפואי ומענה מקצועי למגוון מצבים שכיחים בילדות.</p></div>
+        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title" data-i18n="treatments.card2_title">ייעוץ להורים</h3><p class="reason-card__text" data-i18n="treatments.card2_text">הכוונה מקצועית בשפה ברורה ונגישה, כדי לעזור להורים להבין את המצב ולקבל החלטות בביטחון.</p></div>
+        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title" data-i18n="treatments.card3_title">מעקב רפואי</h3><p class="reason-card__text" data-i18n="treatments.card3_text">ליווי לאורך זמן במצבים שבהם נדרש מעקב, בקרה, חזרה לבדיקות והתאמת המשך הדרך.</p></div>
+        <div class="reason-card reason-card--accent fade-in is-visible"><h3 class="reason-card__title" data-i18n="treatments.card4_title">הפרעות קשב וריכוז</h3><p class="reason-card__text" data-i18n="treatments.card4_text">בירור, הערכה וליווי בתחום הפרעות קשב וריכוז, מתוך הסתכלות רחבה על הילד, המשפחה והתפקוד.</p></div>
       </div>
     </div>
   </section>
@@ -105,18 +110,18 @@
   <section class="section">
     <div class="container">
       <div class="section__header fade-in is-visible">
-        <span class="section__eyebrow">תחומי עיסוק</span>
-        <h2 class="section__title">במה ניתן לפנות אלינו</h2>
+        <span class="section__eyebrow" data-i18n="treatments.s2_eyebrow">תחומי עיסוק</span>
+        <h2 class="section__title" data-i18n="treatments.s2_title">במה ניתן לפנות אלינו</h2>
       </div>
       <div class="treatments-grid">
-        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text">רפואת ילדים כללית</span></div>
-        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text">חיסונים וייעוץ מונע</span></div>
-        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text">בדיקות שגרה ומעקב גדילה</span></div>
-        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text">ייעוץ להורים</span></div>
-        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text">הערכה ומעקב רפואי</span></div>
-        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text">בעיות נשימה ואלרגיות</span></div>
-        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text">זיהומים ומחלות ילדים</span></div>
-        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text">הפרעות קשב וריכוז</span></div>
+        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text" data-i18n="treatments.t1">רפואת ילדים כללית</span></div>
+        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text" data-i18n="treatments.t2">חיסונים וייעוץ מונע</span></div>
+        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text" data-i18n="treatments.t3">בדיקות שגרה ומעקב גדילה</span></div>
+        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text" data-i18n="treatments.t4">ייעוץ להורים</span></div>
+        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text" data-i18n="treatments.t5">הערכה ומעקב רפואי</span></div>
+        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text" data-i18n="treatments.t6">בעיות נשימה ואלרגיות</span></div>
+        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text" data-i18n="treatments.t7">זיהומים ומחלות ילדים</span></div>
+        <div class="treatment-item fade-in is-visible"><span class="treatment-item__dot"></span><span class="treatment-item__text" data-i18n="treatments.t8">הפרעות קשב וריכוז</span></div>
       </div>
     </div>
   </section>
@@ -125,14 +130,14 @@
     <div class="container">
       <div class="about-grid">
         <div class="fade-in is-visible">
-          <span class="section__eyebrow">איך אנחנו עובדים</span>
-          <h2 class="section__title">מענה רפואי בגישה אישית</h2>
-          <p class="section__desc section__header--start">הטיפול אינו מסתיים רק בבדיקה. המטרה היא להבין את צורכי הילד, להסביר להורים את התמונה, ולבנות דרך ברורה להמשך.</p>
+          <span class="section__eyebrow" data-i18n="treatments.s3_eyebrow">איך אנחנו עובדים</span>
+          <h2 class="section__title" data-i18n="treatments.s3_title">מענה רפואי בגישה אישית</h2>
+          <p class="section__desc section__header--start" data-i18n="treatments.s3_desc">הטיפול אינו מסתיים רק בבדיקה. המטרה היא להבין את צורכי הילד, להסביר להורים את התמונה, ולבנות דרך ברורה להמשך.</p>
         </div>
         <div class="contact-info-box fade-in is-visible">
-          <div class="contact-info-box__item"><strong>גישה אישית:</strong> כל ילד וכל משפחה מקבלים יחס מותאם ואנושי.</div>
-          <div class="contact-info-box__item"><strong>הקשבה להורים:</strong> מקום לשאלות, להסברים ולשותפות מלאה בתהליך.</div>
-          <div class="contact-info-box__item"><strong>מענה מקצועי:</strong> בדיקה יסודית, חשיבה רחבה וליווי לפי הצורך.</div>
+          <div class="contact-info-box__item"><strong data-i18n="treatments.approach1_label">גישה אישית:</strong> <span data-i18n="treatments.approach1_value">כל ילד וכל משפחה מקבלים יחס מותאם ואנושי.</span></div>
+          <div class="contact-info-box__item"><strong data-i18n="treatments.approach2_label">הקשבה להורים:</strong> <span data-i18n="treatments.approach2_value">מקום לשאלות, להסברים ולשותפות מלאה בתהליך.</span></div>
+          <div class="contact-info-box__item"><strong data-i18n="treatments.approach3_label">מענה מקצועי:</strong> <span data-i18n="treatments.approach3_value">בדיקה יסודית, חשיבה רחבה וליווי לפי הצורך.</span></div>
         </div>
       </div>
     </div>
@@ -140,11 +145,11 @@
 
   <section class="cta-section">
     <div class="container">
-      <h2 class="fade-in is-visible">צריכים עזרה בבחירת תחום הטיפול המתאים?</h2>
-      <p class="fade-in is-visible">אפשר לפנות אלינו ונכוון אתכם למסלול המתאים ביותר עבור הילד והמשפחה.</p>
+      <h2 class="fade-in is-visible" data-i18n="treatments.cta_title">צריכים עזרה בבחירת תחום הטיפול המתאים?</h2>
+      <p class="fade-in is-visible" data-i18n="treatments.cta_desc">אפשר לפנות אלינו ונכוון אתכם למסלול המתאים ביותר עבור הילד והמשפחה.</p>
       <div class="cta-buttons fade-in is-visible">
-        <a href="./contact.html" class="btn btn--primary btn--large">יצירת קשר</a>
-        <a href="./booking.html" class="btn btn--outline btn--large">לקביעת תור</a>
+        <a href="./contact.html" class="btn btn--primary btn--large" data-i18n="treatments.cta_contact">יצירת קשר</a>
+        <a href="./booking.html" class="btn btn--outline btn--large" data-i18n="treatments.cta_booking">לקביעת תור</a>
       </div>
     </div>
   </section>
@@ -152,11 +157,11 @@
 <footer class="footer">
   <div class="container">
     <div class="footer__inner">
-      <div class="footer__brand"><a href="./index.html" class="header__logo" aria-label="ד״ר בסים נמוז — דף הבית"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="36" height="36"><circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1.5" opacity="0.15"/><path d="M20 10c-3.5 0-6.5 2.5-6.5 6.5 0 5 6.5 13.5 6.5 13.5s6.5-8.5 6.5-13.5c0-4-3-6.5-6.5-6.5z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M18 16h4M20 14v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="20" cy="12.5" r="1.2" fill="currentColor" opacity="0.6"/></svg><span class="header__logo-text"><span class="header__logo-name">ד״ר בסים נמוז</span><span class="header__logo-sub">רופא ילדים מומחה</span></span></a></div>
-      <div class="footer__links"><h4>ניווט מהיר</h4><ul role="list"><li><a href="./about.html">אודות</a></li><li><a href="./adhd.html">קשב וריכוז</a></li><li><a href="./clinicflow.html">אזור מטופלים</a></li><li><a href="./contact.html">יצירת קשר</a></li></ul></div>
-      <div class="footer__links"><h4>צרו קשר</h4><ul role="list"><li><a href="tel:+972544020043">054-402-0043</a></li><li><a href="mailto:Bnamouz@gmail.com">Bnamouz@gmail.com</a></li></ul></div>
+      <div class="footer__brand"><a href="./index.html" class="header__logo" aria-label="ד״ר בסים נמוז — דף הבית"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="36" height="36"><circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1.5" opacity="0.15"/><path d="M20 10c-3.5 0-6.5 2.5-6.5 6.5 0 5 6.5 13.5 6.5 13.5s6.5-8.5 6.5-13.5c0-4-3-6.5-6.5-6.5z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M18 16h4M20 14v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="20" cy="12.5" r="1.2" fill="currentColor" opacity="0.6"/></svg><span class="header__logo-text"><span class="header__logo-name" data-i18n="footer.dr_name">ד״ר בסים נמוז</span><span class="header__logo-sub" data-i18n="footer.dr_sub">רופא ילדים מומחה</span></span></a></div>
+      <div class="footer__links"><h4 data-i18n="footer.nav_title">ניווט מהיר</h4><ul role="list"><li><a href="./about.html" data-i18n="nav.about">אודות</a></li><li><a href="./adhd.html" data-i18n="nav.adhd">קשב וריכוז</a></li><li><a href="./clinicflow.html" data-i18n="nav.portal">אזור מטופלים</a></li><li><a href="./contact.html" data-i18n="nav.contact">יצירת קשר</a></li></ul></div>
+      <div class="footer__links"><h4 data-i18n="footer.contact_section">צרו קשר</h4><ul role="list"><li><a href="tel:+972544020043">054-402-0043</a></li><li><a href="mailto:Bnamouz@gmail.com">Bnamouz@gmail.com</a></li></ul></div>
     </div>
-    <div class="footer__bottom"><span>© 2026 ד״ר בסים נמוז. כל הזכויות שמורות.</span><a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a></div>
+    <div class="footer__bottom"><span data-i18n="footer.copy_dr">© 2026 ד״ר בסים נמוז. כל הזכויות שמורות.</span><a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a></div>
   </div>
 </footer>
 <script defer src="./app.js"></script>

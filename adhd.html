@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="./style.css">
 </head>
 <body class="page-adhd">
-<a href="#main" class="skip-link">דלג לתוכן הראשי</a>
+<a href="#main" class="skip-link" data-i18n="skip">דלג לתוכן הראשי</a>
 <header class="header header--scrolled" id="header">
   <div class="container">
     <div class="header__inner">
@@ -38,19 +38,24 @@
           <circle cx="20" cy="12.5" r="1.2" fill="currentColor" opacity="0.6"/>
         </svg>
         <span class="header__logo-text">
-          <span class="header__logo-name">ד״ר בסים נמוז</span>
-          <span class="header__logo-sub">רופא ילדים מומחה</span>
+          <span class="header__logo-name" data-i18n="header.dr_name">ד״ר בסים נמוז</span>
+          <span class="header__logo-sub" data-i18n="header.dr_sub">רופא ילדים מומחה</span>
         </span>
       </a>
       <nav class="header__nav" aria-label="ניווט ראשי">
-        <a href="./index.html">דף הבית</a>
-        <a href="./about.html">אודות</a>
-        <a href="./treatments.html">תחומי טיפול</a>
-        <a href="./adhd.html">קשב וריכוז</a>
-        <a href="./clinicflow.html">אזור מטופלים</a>
-        <a href="./contact.html">יצירת קשר</a>
+        <a href="./index.html" data-i18n="nav.home">דף הבית</a>
+        <a href="./about.html" data-i18n="nav.about">אודות</a>
+        <a href="./treatments.html" data-i18n="nav.treatments">תחומי טיפול</a>
+        <a href="./adhd.html" data-i18n="nav.adhd">קשב וריכוז</a>
+        <a href="./clinicflow.html" data-i18n="nav.portal">אזור מטופלים</a>
+        <a href="./contact.html" data-i18n="nav.contact">יצירת קשר</a>
       </nav>
       <div class="header__actions">
+        <div class="lang-switch" role="group" aria-label="בחירת שפה">
+          <button class="lang-switch__btn is-active" type="button" data-lang-switch="he">עברית</button>
+          <button class="lang-switch__btn" type="button" data-lang-switch="ar">العربية</button>
+          <button class="lang-switch__btn" type="button" data-lang-switch="en">English</button>
+        </div>
         <button class="theme-toggle" data-theme-toggle aria-label="החלף למצב כהה">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
@@ -66,25 +71,25 @@
   </div>
 </header>
 <nav class="mobile-nav" id="mobile-nav" aria-label="תפריט נייד">
-  <a href="./index.html">דף הבית</a>
-  <a href="./about.html">אודות ד״ר בסים</a>
-  <a href="./treatments.html">תחומי טיפול</a>
-  <a href="./adhd.html">הפרעות קשב וריכוז</a>
-  <a href="./clinicflow.html">אזור מטופלים</a>
-  <a href="./contact.html">יצירת קשר</a>
-  <a href="./booking.html" class="mobile-nav__cta">קביעת תור</a>
+  <a href="./index.html" data-i18n="nav.home">דף הבית</a>
+  <a href="./about.html" data-i18n="nav.about_dr">אודות ד״ר בסים</a>
+  <a href="./treatments.html" data-i18n="nav.treatments">תחומי טיפול</a>
+  <a href="./adhd.html" data-i18n="nav.adhd_full">הפרעות קשב וריכוז</a>
+  <a href="./clinicflow.html" data-i18n="nav.portal">אזור מטופלים</a>
+  <a href="./contact.html" data-i18n="nav.contact">יצירת קשר</a>
+  <a href="./booking.html" class="mobile-nav__cta" data-i18n="nav.booking">קביעת תור</a>
 </nav>
 <main id="main">
   <section class="hero" aria-label="הפרעות קשב וריכוז">
     <div class="container">
       <div class="hero__inner">
         <div class="hero__content fade-in is-visible">
-          <div class="hero__badge">התמחות מיוחדת</div>
-          <h1>הפרעות קשב וריכוז <span>אבחון, ליווי והכוונה מקצועית</span></h1>
-          <p class="hero__subtitle">מענה מקצועי, רגיש ומדויק להורים ולילדים המתמודדים עם שאלות, קשיים או חשד להפרעת קשב וריכוז.</p>
+          <div class="hero__badge" data-i18n="adhd.hero_badge">התמחות מיוחדת</div>
+          <h1 data-i18n="adhd.hero_h1" data-i18n-html="true">הפרעות קשב וריכוז <span>אבחון, ליווי והכוונה מקצועית</span></h1>
+          <p class="hero__subtitle" data-i18n="adhd.hero_subtitle">מענה מקצועי, רגיש ומדויק להורים ולילדים המתמודדים עם שאלות, קשיים או חשד להפרעת קשב וריכוז.</p>
           <div class="hero__buttons">
-            <a href="https://wa.me/972544020043" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--large">לקביעת הערכה ראשונית</a>
-            <a href="#signs" class="btn btn--secondary btn--large">מה הסימנים</a>
+            <a href="https://wa.me/972544020043" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--large" data-i18n="adhd.btn_assess">לקביעת הערכה ראשונית</a>
+            <a href="#signs" class="btn btn--secondary btn--large" data-i18n="adhd.btn_signs">מה הסימנים</a>
           </div>
         </div>
         <div class="hero__visual fade-in is-visible">
@@ -109,12 +114,12 @@
   <section class="section">
     <div class="container container--narrow">
       <div class="section__header fade-in is-visible">
-        <span class="section__eyebrow">מבט רחב</span>
-        <h2 class="section__title">להבין את הילד, לא רק את הכותרת</h2>
+        <span class="section__eyebrow" data-i18n="adhd.s1_eyebrow">מבט רחב</span>
+        <h2 class="section__title" data-i18n="adhd.s1_title">להבין את הילד, לא רק את הכותרת</h2>
       </div>
       <div class="about-page__content fade-in is-visible">
-        <p>הפרעות קשב וריכוז יכולות להשפיע על תחומים רבים בחיי הילד. לעיתים הקושי מופיע במסגרת הלימודים, לעיתים בבית, ולעיתים בקשרים החברתיים, בהתארגנות, בהתמדה, בריכוז או בתחושת המסוגלות.</p>
-        <p>כאשר עולות שאלות או התלבטויות, חשוב לפנות לבירור מקצועי, מסודר ואחראי. המטרה היא לא למהר להדביק כותרת, אלא להבין את הילד לעומק, לבחון את התמונה כולה, ולבנות דרך מתאימה ונכונה להמשך.</p>
+        <p data-i18n="adhd.s1_p1">הפרעות קשב וריכוז יכולות להשפיע על תחומים רבים בחיי הילד. לעיתים הקושי מופיע במסגרת הלימודים, לעיתים בבית, ולעיתים בקשרים החברתיים, בהתארגנות, בהתמדה, בריכוז או בתחושת המסוגלות.</p>
+        <p data-i18n="adhd.s1_p2">כאשר עולות שאלות או התלבטויות, חשוב לפנות לבירור מקצועי, מסודר ואחראי. המטרה היא לא למהר להדביק כותרת, אלא להבין את הילד לעומק, לבחון את התמונה כולה, ולבנות דרך מתאימה ונכונה להמשך.</p>
       </div>
     </div>
   </section>
@@ -122,16 +127,16 @@
   <section class="section section--alt" id="signs">
     <div class="container">
       <div class="section__header fade-in is-visible">
-        <span class="section__eyebrow">מתי כדאי לפנות</span>
-        <h2 class="section__title">סימנים שכדאי לשים לב אליהם</h2>
+        <span class="section__eyebrow" data-i18n="adhd.signs_eyebrow">מתי כדאי לפנות</span>
+        <h2 class="section__title" data-i18n="adhd.signs_title">סימנים שכדאי לשים לב אליהם</h2>
       </div>
       <div class="reasons-grid">
-        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title">קושי מתמשך בריכוז</h3><p class="reason-card__text">קושי לשבת לאורך זמן, לעקוב אחרי הוראות או להשלים משימות.</p></div>
-        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title">מוסחות גבוהה</h3><p class="reason-card__text">מעבר מהיר בין גירויים, קושי לשמור על רצף ותחושת פיזור כללית.</p></div>
-        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title">חוסר שקט או אימפולסיביות</h3><p class="reason-card__text">תנועתיות מוגברת, תגובות מהירות, קושי להמתין או לעצור.</p></div>
-        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title">קושי בהתארגנות</h3><p class="reason-card__text">שכחנות, איבוד חפצים, קושי בניהול זמן או בסדר יום.</p></div>
-        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title">פער בין יכולת לתפקוד</h3><p class="reason-card__text">הילד חכם ומסוגל, אך מתקשה לממש את יכולותיו בפועל.</p></div>
-        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title">פניות מהמסגרת החינוכית</h3><p class="reason-card__text">הערות מצד בית הספר או הגן על קשיי קשב, התארגנות או התנהגות.</p></div>
+        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title" data-i18n="adhd.sign1_title">קושי מתמשך בריכוז</h3><p class="reason-card__text" data-i18n="adhd.sign1_text">קושי לשבת לאורך זמן, לעקוב אחרי הוראות או להשלים משימות.</p></div>
+        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title" data-i18n="adhd.sign2_title">מוסחות גבוהה</h3><p class="reason-card__text" data-i18n="adhd.sign2_text">מעבר מהיר בין גירויים, קושי לשמור על רצף ותחושת פיזור כללית.</p></div>
+        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title" data-i18n="adhd.sign3_title">חוסר שקט או אימפולסיביות</h3><p class="reason-card__text" data-i18n="adhd.sign3_text">תנועתיות מוגברת, תגובות מהירות, קושי להמתין או לעצור.</p></div>
+        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title" data-i18n="adhd.sign4_title">קושי בהתארגנות</h3><p class="reason-card__text" data-i18n="adhd.sign4_text">שכחנות, איבוד חפצים, קושי בניהול זמן או בסדר יום.</p></div>
+        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title" data-i18n="adhd.sign5_title">פער בין יכולת לתפקוד</h3><p class="reason-card__text" data-i18n="adhd.sign5_text">הילד חכם ומסוגל, אך מתקשה לממש את יכולותיו בפועל.</p></div>
+        <div class="reason-card fade-in is-visible"><h3 class="reason-card__title" data-i18n="adhd.sign6_title">פניות מהמסגרת החינוכית</h3><p class="reason-card__text" data-i18n="adhd.sign6_text">הערות מצד בית הספר או הגן על קשיי קשב, התארגנות או התנהגות.</p></div>
       </div>
     </div>
   </section>
@@ -140,22 +145,22 @@
     <div class="container">
       <div class="adhd-grid">
         <div class="adhd__content fade-in is-visible">
-          <span class="section__eyebrow">איך נראה התהליך</span>
-          <h2>בירור, הערכה והכוונה להמשך</h2>
-          <p>הגישה שלי בתחום זה מבוססת על בדיקה רחבה ומסודרת, הכוללת היכרות עם הילד והמשפחה, הקשבה לקשיים, לשאלות ולמטרות, הבנת התפקוד של הילד בבית ובמסגרת החינוכית, הערכה מקצועית ואחראית, והכוונה להמשך הדרך בהתאם לצורך.</p>
+          <span class="section__eyebrow" data-i18n="adhd.process_eyebrow">איך נראה התהליך</span>
+          <h2 data-i18n="adhd.process_title">בירור, הערכה והכוונה להמשך</h2>
+          <p data-i18n="adhd.process_text">הגישה שלי בתחום זה מבוססת על בדיקה רחבה ומסודרת, הכוללת היכרות עם הילד והמשפחה, הקשבה לקשיים, לשאלות ולמטרות, הבנת התפקוד של הילד בבית ובמסגרת החינוכית, הערכה מקצועית ואחראית, והכוונה להמשך הדרך בהתאם לצורך.</p>
           <div class="adhd__features">
-            <div class="adhd-feature fade-in is-visible"><div class="adhd-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div><div class="adhd-feature__title">אבחון מקצועי ומעמיק</div><p class="adhd-feature__text">בחינה מסודרת של התמונה המלאה לפני קבלת החלטות.</p></div></div>
-            <div class="adhd-feature fade-in is-visible"><div class="adhd-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/></svg></div><div><div class="adhd-feature__title">ליווי משפחתי</div><p class="adhd-feature__text">מתן הסבר, סדר והכוונה גם להורים, לא רק לילד.</p></div></div>
-            <div class="adhd-feature fade-in is-visible"><div class="adhd-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg></div><div><div class="adhd-feature__title">תכנון מותאם אישית</div><p class="adhd-feature__text">התאמת הדרך הנכונה ביותר לילד לפי צרכיו, סביבתו ותפקודו.</p></div></div>
+            <div class="adhd-feature fade-in is-visible"><div class="adhd-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div><div class="adhd-feature__title" data-i18n="adhd.feat1_title">אבחון מקצועי ומעמיק</div><p class="adhd-feature__text" data-i18n="adhd.feat1_text">בחינה מסודרת של התמונה המלאה לפני קבלת החלטות.</p></div></div>
+            <div class="adhd-feature fade-in is-visible"><div class="adhd-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/></svg></div><div><div class="adhd-feature__title" data-i18n="adhd.feat2_title">ליווי משפחתי</div><p class="adhd-feature__text" data-i18n="adhd.feat2_text">מתן הסבר, סדר והכוונה גם להורים, לא רק לילד.</p></div></div>
+            <div class="adhd-feature fade-in is-visible"><div class="adhd-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg></div><div><div class="adhd-feature__title" data-i18n="adhd.feat3_title">תכנון מותאם אישית</div><p class="adhd-feature__text" data-i18n="adhd.feat3_text">התאמת הדרך הנכונה ביותר לילד לפי צרכיו, סביבתו ותפקודו.</p></div></div>
           </div>
         </div>
         <div class="adhd__info-box fade-in is-visible">
-          <h3>למי מתאים לפנות</h3>
+          <h3 data-i18n="adhd.who_title">למי מתאים לפנות</h3>
           <ul class="adhd__info-list">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/></svg>הורים שמתלבטים אם יש צורך בבירור</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/></svg>משפחות שקיבלו הערות מהמסגרת החינוכית</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/></svg>ילדים שמתקשים להתרכז או להתארגן</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/></svg>הורים שרוצים להבין טוב יותר מה עובר על הילד</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/></svg><span data-i18n="adhd.who1">הורים שמתלבטים אם יש צורך בבירור</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/></svg><span data-i18n="adhd.who2">משפחות שקיבלו הערות מהמסגרת החינוכית</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/></svg><span data-i18n="adhd.who3">ילדים שמתקשים להתרכז או להתארגן</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/></svg><span data-i18n="adhd.who4">הורים שרוצים להבין טוב יותר מה עובר על הילד</span></li>
           </ul>
         </div>
       </div>
@@ -164,11 +169,11 @@
 
   <section class="cta-section" id="contact" aria-label="יצירת קשר">
     <div class="container">
-      <h2 class="fade-in is-visible">יש שאלות או צורך בהערכה?</h2>
-      <p class="fade-in is-visible">אפשר לפנות למזכירת המרפאה בוואטסאפ ולקבל הכוונה מסודרת להמשך.</p>
+      <h2 class="fade-in is-visible" data-i18n="adhd.cta_title">יש שאלות או צורך בהערכה?</h2>
+      <p class="fade-in is-visible" data-i18n="adhd.cta_desc">אפשר לפנות למזכירת המרפאה בוואטסאפ ולקבל הכוונה מסודרת להמשך.</p>
       <div class="cta-buttons fade-in is-visible">
-        <a href="https://wa.me/972544020043" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--large">פנייה בוואטסאפ</a>
-        <a href="./index.html#contact" class="btn btn--outline btn--large">לפרטי קשר מלאים</a>
+        <a href="https://wa.me/972544020043" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--large" data-i18n="adhd.cta_whatsapp">פנייה בוואטסאפ</a>
+        <a href="./index.html#contact" class="btn btn--outline btn--large" data-i18n="adhd.cta_contact">לפרטי קשר מלאים</a>
       </div>
     </div>
   </section>
@@ -179,20 +184,20 @@
       <div class="footer__brand">
         <a href="./index.html" class="header__logo" aria-label="ד״ר בסים נמוז — דף הבית">
           <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="36" height="36"><circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1.5" opacity="0.15"/><path d="M20 10c-3.5 0-6.5 2.5-6.5 6.5 0 5 6.5 13.5 6.5 13.5s6.5-8.5 6.5-13.5c0-4-3-6.5-6.5-6.5z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M18 16h4M20 14v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="20" cy="12.5" r="1.2" fill="currentColor" opacity="0.6"/></svg>
-          <span class="header__logo-text"><span class="header__logo-name">ד״ר בסים נמוז</span><span class="header__logo-sub">רופא ילדים מומחה</span></span>
+          <span class="header__logo-text"><span class="header__logo-name" data-i18n="footer.dr_name">ד״ר בסים נמוז</span><span class="header__logo-sub" data-i18n="footer.dr_sub">רופא ילדים מומחה</span></span>
         </a>
       </div>
       <div class="footer__links">
-        <h4>ניווט מהיר</h4>
+        <h4 data-i18n="footer.nav_title">ניווט מהיר</h4>
         <ul role="list">
-          <li><a href="./index.html">דף הבית</a></li>
-          <li><a href="./about.html">אודות</a></li>
-          <li><a href="./adhd.html">קשב וריכוז</a></li>
-          <li><a href="./clinicflow.html">אזור מטופלים</a></li>
+          <li><a href="./index.html" data-i18n="nav.home">דף הבית</a></li>
+          <li><a href="./about.html" data-i18n="nav.about">אודות</a></li>
+          <li><a href="./adhd.html" data-i18n="nav.adhd">קשב וריכוז</a></li>
+          <li><a href="./clinicflow.html" data-i18n="nav.portal">אזור מטופלים</a></li>
         </ul>
       </div>
       <div class="footer__links">
-        <h4>צרו קשר</h4>
+        <h4 data-i18n="footer.contact_section">צרו קשר</h4>
         <ul role="list">
           <li><a href="tel:+972544020043">054-402-0043</a></li>
           <li><a href="mailto:Bnamouz@gmail.com">Bnamouz@gmail.com</a></li>
@@ -200,7 +205,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <span>© 2026 ד״ר בסים נמוז. כל הזכויות שמורות.</span>
+      <span data-i18n="footer.copy_dr">© 2026 ד״ר בסים נמוז. כל הזכויות שמורות.</span>
       <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
     </div>
   </div>
