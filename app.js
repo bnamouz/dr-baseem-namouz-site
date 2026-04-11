@@ -1213,7 +1213,7 @@
   }
 
   updateThemeIcon();
-  applyLanguage('he');
+  applyLanguage('ar');
 
   if (themeToggle) {
     themeToggle.addEventListener('click', function () {
@@ -1225,7 +1225,7 @@
 
   langButtons.forEach(function (button) {
     button.addEventListener('click', function () {
-      applyLanguage(button.dataset.langSwitch || 'he');
+      applyLanguage(button.dataset.langSwitch || 'ar');
     });
   });
 
