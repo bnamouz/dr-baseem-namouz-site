@@ -1260,7 +1260,18 @@
     if (!workshopPopup) return;
     workshopPopup.classList.add('is-visible');
     workshopPopup.setAttribute('aria-hidden', 'false');
-    workshopPopupTimer = window.setTimeout(hideWorkshopPopup, 5000);
+
+    if (workshopPopupDismiss) {
+      workshopPopupDismiss.disabled = true;
+      workshopPopupDismiss.textContent = 'يمكن الإغلاق بعد 7 ثوانٍ';
+      window.setTimeout(function () {
+        if (!workshopPopup) return;
+        workshopPopupDismiss.disabled = false;
+        workshopPopupDismiss.textContent = 'إغلاق';
+      }, 7000);
+    }
+
+    workshopPopupTimer = window.setTimeout(hideWorkshopPopup, 15000);
   }
 
   if (workshopPopupClose) {
