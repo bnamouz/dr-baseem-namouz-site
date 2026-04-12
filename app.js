@@ -1262,16 +1262,11 @@
     workshopPopup.setAttribute('aria-hidden', 'false');
 
     if (workshopPopupDismiss) {
-      workshopPopupDismiss.disabled = true;
-      workshopPopupDismiss.textContent = 'يمكن الإغلاق بعد 7 ثوانٍ';
-      window.setTimeout(function () {
-        if (!workshopPopup) return;
-        workshopPopupDismiss.disabled = false;
-        workshopPopupDismiss.textContent = 'إغلاق';
-      }, 7000);
+      workshopPopupDismiss.disabled = false;
+      workshopPopupDismiss.textContent = 'إغلاق';
     }
 
-    workshopPopupTimer = window.setTimeout(hideWorkshopPopup, 15000);
+    workshopPopupTimer = window.setTimeout(hideWorkshopPopup, 30000);
   }
 
   if (workshopPopupClose) {
