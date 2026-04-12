@@ -1241,6 +1241,42 @@
     });
   }
 
+  const workshopPopup = document.getElementById('workshop-popup');
+  const workshopPopupClose = document.getElementById('workshop-popup-close');
+  const workshopPopupDismiss = document.getElementById('workshop-popup-dismiss');
+  let workshopPopupTimer = null;
+
+  function hideWorkshopPopup() {
+    if (!workshopPopup) return;
+    workshopPopup.classList.remove('is-visible');
+    workshopPopup.setAttribute('aria-hidden', 'true');
+    if (workshopPopupTimer) {
+      window.clearTimeout(workshopPopupTimer);
+      workshopPopupTimer = null;
+    }
+  }
+
+  function showWorkshopPopup() {
+    if (!workshopPopup) return;
+    workshopPopup.classList.add('is-visible');
+    workshopPopup.setAttribute('aria-hidden', 'false');
+    workshopPopupTimer = window.setTimeout(hideWorkshopPopup, 5000);
+  }
+
+  if (workshopPopupClose) {
+    workshopPopupClose.addEventListener('click', hideWorkshopPopup);
+  }
+
+  if (workshopPopupDismiss) {
+    workshopPopupDismiss.addEventListener('click', hideWorkshopPopup);
+  }
+
+  if (workshopPopup) {
+    const overlay = workshopPopup.querySelector('.workshop-popup__overlay');
+    if (overlay) overlay.addEventListener('click', hideWorkshopPopup);
+    window.setTimeout(showWorkshopPopup, 600);
+  }
+
   window.addEventListener('scroll', handleScroll, { passive: true });
   handleScroll();
   revealAllSections();

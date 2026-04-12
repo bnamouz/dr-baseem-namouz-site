@@ -1582,6 +1582,103 @@ html {
   color: var(--color-primary);
 }
 
+.workshop-popup {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 9999;
+}
+
+.workshop-popup.is-visible {
+  display: flex;
+}
+
+.workshop-popup__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.58);
+  backdrop-filter: blur(3px);
+}
+
+.workshop-popup__card {
+  position: relative;
+  width: min(100%, 620px);
+  background: linear-gradient(180deg, #ffffff 0%, #f8f6ff 100%);
+  border-radius: 30px;
+  padding: 34px 28px 28px;
+  box-shadow: 0 28px 70px rgba(30, 27, 75, 0.22);
+  text-align: center;
+  border: 1px solid rgba(79, 70, 229, 0.14);
+}
+
+.workshop-popup__close {
+  position: absolute;
+  top: 14px;
+  inset-inline-start: 14px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(49, 46, 129, 0.08);
+  color: var(--color-primary);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.workshop-popup__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(79, 70, 229, 0.10);
+  color: var(--color-primary);
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.workshop-popup__title {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  color: #1e1b4b;
+  margin-bottom: 14px;
+  font-weight: 800;
+}
+
+.workshop-popup__text {
+  color: #4a4768;
+  font-size: 1.08rem;
+  line-height: 1.9;
+  margin: 0 auto 20px;
+  max-width: 500px;
+}
+
+.workshop-popup__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.workshop-popup__note {
+  margin-top: 14px;
+  color: #6d688d;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 640px) {
+  .workshop-popup__card {
+    padding: 28px 18px 22px;
+  }
+
+  .workshop-popup__actions {
+    flex-direction: column;
+  }
+}
+
 /* ====================================================
    SCROLL ANIMATIONS
    ==================================================== */
