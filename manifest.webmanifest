@@ -1,0 +1,42 @@
+{
+  "id": "/",
+  "name": "Magic Kids Institute | معهد أطفال السحر",
+  "short_name": "Magic Kids",
+  "description": "ثبّتوا موقع المعهد كتطبيق للوصول السريع للخدمات والأنشطة وتنسيق المواعيد، بنفس التصميم واللغة.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f6f8f8",
+  "theme_color": "#075a5d",
+  "icons": [
+    {
+      "src": "/assets/app-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "حجز موعد",
+      "url": "/booking.html"
+    },
+    {
+      "name": "أنشطة وورشات",
+      "url": "/activities.html"
+    },
+    {
+      "name": "انضمّوا للطاقم",
+      "url": "/recruit.html"
+    }
+  ],
+  "prefer_related_applications": false
+}
