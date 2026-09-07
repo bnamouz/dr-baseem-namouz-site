@@ -1133,6 +1133,8 @@
     }
   };
 
+  Object.keys(window.MAGIC_TRANSLATIONS || {}).forEach(function (lang) { Object.assign(translations[lang], window.MAGIC_TRANSLATIONS[lang]); });
+
   let currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   let currentLanguage = 'he';
   let isMenuOpen = false;
@@ -1180,6 +1182,7 @@
     });
 
     updateThemeIcon();
+    document.dispatchEvent(new CustomEvent('magic-language', {detail: {lang: lang}}));
   }
 
   function toggleMenu() {
