@@ -1,5 +1,12 @@
 // Each entry has Hebrew, Arabic and English. All public copy is validated at build time.
 export const copy = {
+ 'u.bookPeds':['תור למרפאת ילדים','حجز موعد لعيادة الأطفال','Book pediatrics'],
+ 'u.bookAdhd':['תור למרפאת קשב וריכוז','حجز موعد لعيادة الانتباه والتركيز','Book the ADHD clinic'],
+ 'u.chooseClinic':['בוחרים מרפאה, קובעים תור.','اختاروا العيادة واحجزوا موعدًا.','Choose your clinic. Book your visit.'],
+ 'u.separateCalendars':['לכל מרפאה יומן תורים נפרד. בחרו את השירות הרצוי כדי לראות את אפשרויות ההזמנה שלו.','لكل عيادة تقويم مواعيد مستقل. اختاروا الخدمة لعرض خيارات الحجز الخاصة بها.','Each clinic has its own appointment calendar. Choose the service to view its booking options.'],
+ 'u.pedsCalendar':['רפואת ילדים ומעקב במרפאה. פתיחת לוח התורים של מרפאת הילדים.','طب الأطفال والمتابعة في العيادة. افتحوا تقويم مواعيد عيادة الأطفال.','Pediatric care and clinic follow-ups. Open the pediatrics appointment calendar.'],
+ 'u.adhdCalendar':['אבחון קשב וריכוז. קביעת אבחון לאחר השלמת שאלוני ההורה והמורה.','تشخيص اضطراب الانتباه والتركيز. يُحجز موعد التشخيص بعد استكمال استبيانات الأهل والمعلم.','ADHD assessments. Book after completing the parent and teacher questionnaires.'],
+ 'u.bookingConfirmation':['תור נקבע רק לאחר שמופיע אישור הזמנה. אם ההזמנה המקוונת אינה זמינה, המזכירות תסייע בתיאום.','يُحجز الموعد فقط بعد ظهور تأكيد الحجز. إذا لم يتوفر الحجز الإلكتروني، تساعدكم السكرتارية في التنسيق.','Your appointment is booked only when a confirmation appears. If online booking is unavailable, the clinic can help you arrange a visit.'],
  'u.hero1':['מקום לגדול.','مساحة للنمو.','Room to grow.'],
  'u.hero2':['מקום לגלות את הקסם.','ومكان لاكتشاف السحر.','A place to find the magic.'],
  'u.tagline':['ההבנה לפני האבחנה','الفهم قبل التشخيص','Understanding comes first'],
