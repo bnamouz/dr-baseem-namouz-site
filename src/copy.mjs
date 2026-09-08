@@ -1,7 +1,9 @@
 // Each entry has Hebrew, Arabic and English. All public copy is validated at build time.
 export const copy = {
+ 'u.adminTitle':['כניסת אדמין','دخول الإدارة','Admin login'],
+ 'u.adminHelp':['לצוות המכון: יומני המרפאות, ניהול המכון ומעקב שאלונים. הכניסה בחשבון מורשה.','لطاقم المعهد: تقاويم العيادات وإدارة المعهد ومتابعة الاستبيانات. الدخول بحساب مخوّل.','For staff: clinic calendars, institute management and questionnaire tracking. Authorized account required.'],
  'u.adhdAdmin':['ניהול קליטה וזימון לקשב','إدارة ملفات ومواعيد عيادة الانتباه','ADHD intake and scheduling'],
- 'u.pedsPhone':['טלפון מרפאת הילדים','هاتف عيادة الأطفال','Pediatrics clinic phone'],
+ 'u.pedsPhone':['WhatsApp מרפאת הילדים','واتساب عيادة الأطفال','Pediatrics clinic WhatsApp'],
  'u.pedsSecretary':['מזכירה בשעות פעילות המרפאה','السكرتيرة خلال ساعات عمل العيادة','Secretary during clinic opening hours'],
  'u.instituteContact':['יצירת קשר עם המכון','التواصل مع المعهد','Contact the institute'],
  'u.bookPeds':['תור למרפאת ילדים','حجز موعد لعيادة الأطفال','Book pediatrics'],
