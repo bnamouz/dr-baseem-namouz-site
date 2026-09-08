@@ -12,3 +12,5 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
 
 .clinic-phones{display:grid;gap:10px;margin-top:18px;width:100%}.clinic-phones a{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px 18px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:.88rem;background:var(--mint)}.clinic-phones a span{flex:1 1 160px}.clinic-phones b{white-space:nowrap;font-size:1rem}.footer-contact .clinic-phones{margin:0 0 8px}.footer-contact .clinic-phones a{width:100%}
+
+.admin-entry{margin-top:1.5rem;padding:1.2rem;border:1px solid #c9dfdc;border-radius:18px;background:#fff}.admin-entry h2{font-size:1.15rem;margin:0}.admin-entry p{font-size:.9rem;margin:.5rem 0 1rem}.admin-entry .actions{gap:.8rem;flex-wrap:wrap}
