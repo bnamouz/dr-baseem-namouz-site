@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   // A previously cached HTML page may request this script after a publication.
-  if(!document.body.dataset.page){const fresh=new URL(location.href);if(fresh.searchParams.get('site-version')!=='20260912-partners-front-1'){fresh.searchParams.set('site-version','20260912-partners-front-1');location.replace(fresh.href);}return;}
+  if(!document.body.dataset.page){const fresh=new URL(location.href);if(fresh.searchParams.get('site-version')!=='20260912-family-facts-1'){fresh.searchParams.set('site-version','20260912-family-facts-1');location.replace(fresh.href);}return;}
   const root=document.documentElement, translations=window.MAGIC_TRANSLATIONS||{};
   let language=window.magicLanguage||'ar';
   const words=key=>translations[language]?.[key]||'';
@@ -55,6 +55,24 @@
   window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;updateInstallLabel();});
   window.addEventListener('appinstalled',()=>{installed=true;installPrompt=null;updateInstallLabel();});
   document.querySelectorAll('[data-install]').forEach(b=>b.addEventListener('click',async()=>{if(installPrompt){const prompt=installPrompt;installPrompt=null;try{await prompt.prompt();await prompt.userChoice;}catch(_){document.getElementById('install-dialog')?.showModal();}}else document.getElementById('install-dialog')?.showModal();}));
+
+  const facts=document.querySelector('.family-facts');
+  if(facts){
+    const slides=[...facts.querySelectorAll('.fact-slide')], motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+    const button=facts.querySelector('[data-fact-toggle]');
+    let index=0, paused=motion.matches, hovered=false, timer=null;
+    facts.querySelector('.facts-controls').hidden=false;
+    function label(){const key=paused?'f.play':'f.pause';button.querySelector('[data-i18n]').dataset.i18n=key;button.querySelector('[data-i18n]').textContent=words(key);}
+    function schedule(){clearInterval(timer);if(!paused&&!hovered&&!document.hidden&&!facts.contains(document.activeElement))timer=setInterval(()=>show(index+1),15000);}
+    function show(n){index=(n+slides.length)%slides.length;slides.forEach((s,i)=>s.hidden=i!==index);facts.querySelector('.facts-count').textContent=(index+1)+' / '+slides.length;}
+    button.addEventListener('click',()=>{paused=!paused;label();schedule();});
+    facts.querySelector('[data-fact-next]').addEventListener('click',()=>{show(index+1);schedule();});
+    facts.querySelector('[data-fact-prev]').addEventListener('click',()=>{show(index-1);schedule();});
+    facts.addEventListener('mouseenter',()=>{hovered=true;schedule();});facts.addEventListener('mouseleave',()=>{hovered=false;schedule();});
+    facts.addEventListener('focusin',schedule);facts.addEventListener('focusout',()=>setTimeout(schedule,0));
+    document.addEventListener('visibilitychange',schedule);document.addEventListener('magic-language',label);
+    motion.addEventListener('change',()=>{paused=motion.matches;label();schedule();});label();schedule();
+  }
   applyLanguage(language);
   if('serviceWorker' in navigator&&location.protocol==='https:')window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js',{scope:'/',updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{});});
   const aliases={'#vision':'#services','#contact':'#contact-home','#main-services':'#services'};
