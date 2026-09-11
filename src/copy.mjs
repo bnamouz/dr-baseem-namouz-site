@@ -1,5 +1,13 @@
 // Each entry has Hebrew, Arabic and English. All public copy is validated at build time.
 export const copy = {
+ "u.travelInsurance":["ביטוח נסיעות לחו״ל", "تأمين السفر للخارج", "Travel insurance"],
+ "u.insuranceHint":["לעמוד משרד הביטוח", "صفحة مكتب التأمين", "Visit the insurance agency"],
+ "u.esim":["חיבור eSIM לחו״ל", "اتصال eSIM للسفر", "Travel eSIM"],
+ "u.comingSoon":["בקרוב", "قريبًا", "Coming soon"],
+ "u.mksStore":["חנות המשחקים של MKS", "متجر ألعاب MKS", "MKS toy store"],
+ "u.mksAccess":["כניסה לחנות · לפי הרשאות גישה", "دخول المتجر · حسب صلاحيات الوصول", "Open store · access permissions apply"],
+ "u.quickServices":["עוד מבית ילדי הקסם", "المزيد من أطفال السحر", "More from Magic Kids"],
+
  'u.moxoTitle':['מבדק MOXO במכון ילדי הקסם','فحص MOXO في معهد أطفال السحر','MOXO at Magic Kids Institute'],
  'u.moxoBook':['בקשת תור למבדק MOXO','طلب موعد لفحص MOXO','Request a MOXO appointment'],
  'u.moxoWhat':['MOXO הוא מבדק קשב ממוחשב הכולל מסיחים חזותיים ושמיעתיים. הוא מסייע לאיש המקצוע בהערכת הקשב כחלק מתהליך אבחון, ואינו מחליף הערכה קלינית.','MOXO هو فحص انتباه محوسب يتضمن مشتّتات بصرية وسمعية. يساعد المختص في تقييم الانتباه ضمن عملية التشخيص، ولا يحلّ محل التقييم السريري.','MOXO is a computerized attention assessment with visual and auditory distractions. It supports professional assessment as part of the diagnostic process and does not replace clinical evaluation.'],
