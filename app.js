@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   // A previously cached HTML page may request this script after a publication.
-  if(!document.body.dataset.page){const fresh=new URL(location.href);if(fresh.searchParams.get('site-version')!=='20260909-sarah-moxo-1'){fresh.searchParams.set('site-version','20260909-sarah-moxo-1');location.replace(fresh.href);}return;}
+  if(!document.body.dataset.page){const fresh=new URL(location.href);if(fresh.searchParams.get('site-version')!=='20260911-navigation-partners-1'){fresh.searchParams.set('site-version','20260911-navigation-partners-1');location.replace(fresh.href);}return;}
   const root=document.documentElement, translations=window.MAGIC_TRANSLATIONS||{};
   let language=window.magicLanguage||'ar';
   const words=key=>translations[language]?.[key]||'';
