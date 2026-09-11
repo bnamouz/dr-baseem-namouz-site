@@ -32,3 +32,6 @@ body{background:#fff}h1,h2,h3{letter-spacing:-.025em}html[lang=ar] h1,html[lang=
 @media(prefers-reduced-motion:reduce){.main-nav a,.pathways>a,.partner-card{transition:none}.main-nav a:hover,.pathways>a:hover,.partner-card[href]:hover{transform:none}}
 
 .home-hero{background-image:url('/assets/playful-sky.webp');background-size:cover;background-position:center bottom}.home-hero .hero-grid{z-index:1}@media(max-width:680px){.home-hero{background-size:auto 100%;background-position:68% bottom}}
+
+/* Prominent partner shortcuts directly below the homepage navigation. */
+body[data-page="index"] main>.partner-strip:first-child{padding:22px 0 12px;background:#a9dcfa}body[data-page="index"] main>.partner-strip:first-child .partner-card{box-shadow:0 5px 16px #213e7012;border-width:2px}@media(max-width:680px){body[data-page="index"] main>.partner-strip:first-child{padding:16px 0 8px}}
