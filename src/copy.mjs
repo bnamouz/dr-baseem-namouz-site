@@ -1,5 +1,13 @@
 // Each entry has Hebrew, Arabic and English. All public copy is validated at build time.
 export const copy = {
+ 'booking.card3_title':["מקבלים אישור", "تأكيد الحجز", "Receive confirmation"],
+ 'booking.card2_text':["ממלאים את פרטי הילד/ה וההורה ומאשרים את ההזמנה.", "أكملوا تفاصيل الطفل وولي الأمر وأكّدوا الحجز.", "Enter the child and parent details, then confirm the booking."],
+ 'booking.card2_title':["ממלאים פרטים", "إكمال التفاصيل", "Enter your details"],
+ 'booking.card1_title':["בוחרים מועד", "اختيار موعد", "Choose a time"],
+ 'u.treatmentRequest':['פנייה לטיפול במכון','طلب علاج في المعهد','Request institute treatment'],
+ 'u.treatmentAdmin':['ניהול פניות לטיפול','إدارة طلبات العلاج','Manage treatment requests'],
+ 'u.treatmentFlow':['לטיפול במכון או לחוג: בוחרים סוג טיפול וממלאים טופס. הפנייה נשמרת במכון והצוות מתאם תור לפי סדר הפניות וזמינות המטפל/ת. שליחת הטופס אינה אישור לתור.','للعلاج في المعهد أو للدورات: اختاروا نوع العلاج واملؤوا النموذج. يُحفظ الطلب لدى المعهد ويتواصل الفريق لتنسيق الموعد حسب ترتيب الطلبات وتوفر المعالج/ة. إرسال النموذج ليس تأكيدًا للموعد.','For institute treatments or classes, choose a service and submit the form. The institute stores your request and staff schedules by request order and therapist availability. Submission does not confirm an appointment.'],
+
 "p.nav":["רפואה פרטית", "طب خاص", "Private care"],
 "p.title":["רפואת ילדים פרטית — עד הבית ובטלפון", "طب أطفال خاص — بالبيت وبالهاتف", "Private pediatric care — at home and by phone"],
 "p.desc":["בחרו ביקור בית לתינוק או ייעוץ טלפוני, קבלו הצעת מחיר ובקשו תיאום עם ד״ר בסים נמוז.", "اختاروا زيارة منزلية للرضيع أو استشارة هاتفية، اطّلعوا على عرض السعر واطلبوا التنسيق مع د. بسيم نموز.", "Choose a home visit for your baby or a phone consultation, view a quote and request coordination with Dr. Basim Namouz."],
@@ -146,9 +154,9 @@ export const copy = {
  'u.offlineCopy':['פרטי הקשר זמינים כאן. התחברו מחדש כדי לפתוח עמודים מעודכנים או לשלוח פנייה.','تفاصيل التواصل متاحة هنا. أعيدوا الاتصال لفتح الصفحات المحدّثة أو إرسال رسالة.','Contact details are available here. Reconnect to open current pages or send an enquiry.'],
  'u.retry':['ניסיון נוסף','المحاولة مجددًا','Try again'],
  'u.appOffline':['פרטי קשר זמינים גם ללא אינטרנט. פתיחת עמודים מעודכנים ושליחת פניות דורשות חיבור.','تفاصيل التواصل متاحة أيضًا دون إنترنت. فتح الصفحات المحدّثة وإرسال الرسائل يحتاج إلى اتصال.','Contact details are also available offline. Current pages and sending enquiries require a connection.'],
- 'u.bookingCopy':['לתיאום ביקור במרפאת הילדים פונים למזכירה. היא תתאם איתכם את סוג הביקור והמועד ותאשר את התור.','لتنسيق زيارة لعيادة الأطفال، تواصلوا مع السكرتيرة لتحديد نوع الزيارة والموعد وتأكيد الحجز.','Contact the secretary to arrange a pediatric clinic visit. She will confirm the visit type, date and appointment.'],
- 'u.bookingStep1':['פונים עם שם המבוגר ומספר לחזרה.','تواصلوا باسم الشخص البالغ ورقم للرد.','Send the adult contact name and a callback number.'],
- 'u.bookingStep3':['המועד סופי רק לאחר אישור המרפאה.','يكون الموعد نهائيًا بعد تأكيد العيادة فقط.','Your appointment is final only after the clinic confirms it.'],
+ 'u.bookingCopy':["בחרו שעה פנויה בקישור מרפאת הילדים והשלימו את הפרטים. לאחר אישור ההזמנה במסך התור נשמר ביומן, ללא אישור המזכירות. שמרו את הקישור האישי לביטול. אם לוח התורים אינו זמין, אפשר לפנות למרפאה.", "اختاروا وقتًا متاحًا في رابط عيادة الأطفال وأكملوا التفاصيل. بعد ظهور تأكيد الحجز يُحفظ الموعد دون موافقة السكرتارية. احفظوا رابط الإلغاء الشخصي. إذا كان التقويم غير متاح، تواصلوا مع العيادة.", "Choose an available time in the pediatrics booking link and complete your details. Once the confirmation appears, the appointment is saved without secretary approval. Save your personal cancellation link. If the calendar is unavailable, contact the clinic."],
+ 'u.bookingStep1':["נכנסים לקישור מרפאת הילדים ובוחרים יום ושעה פנויים.", "ادخلوا رابط عيادة الأطفال واختاروا يومًا ووقتًا متاحين.", "Open pediatrics booking and choose an available day and time."],
+ 'u.bookingStep3':["אישור ההזמנה מופיע במסך עם קישור אישי לביטול התור.", "يظهر تأكيد الحجز على الشاشة مع رابط شخصي لإلغاء الموعد.", "Confirmation appears on screen with a personal cancellation link."],
  'u.hoursNote':['שעות הקבלה המפורסמות באתר. יש לתאם ולאשר תור מול המזכירה.','ساعات الاستقبال المنشورة في الموقع. يُرجى تنسيق الموعد وتأكيده مع السكرتيرة.','The clinic’s published reception hours. Please arrange and confirm your visit with the secretary.'],
  'u.teamTitle':['אנשים שרואים את הילד.','طاقم يرى الطفل بكل جوانبه.','People who see the whole child.'],
  'u.teamCopy':['ד״ר בסים נמוז מוביל את המכון. אנו פועלים להרחבת הפעילות עם אנשי מקצוע ומדריכים נוספים; פרטי צוות חדשים יפורסמו לאחר אישורם.','يقود الدكتور بسيم نموز المعهد. نعمل على توسيع النشاط مع مختصّين ومدرّبين إضافيين؛ تُنشَر تفاصيل الطاقم الجديد بعد تأكيدها.','Dr. Basim Namouz leads the institute. We are developing activities with additional professionals and instructors; new team profiles will be published once confirmed.'],

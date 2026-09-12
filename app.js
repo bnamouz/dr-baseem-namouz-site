@@ -7,7 +7,7 @@
   const words=key=>translations[language]?.[key]||'';
   let installPrompt=null,installed=window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
   function updateInstallLabel(){document.querySelectorAll('[data-install]').forEach(b=>{b.disabled=installed;b.querySelector('[data-i18n]').textContent=words(installed?'u.installed':'u.install');});}
-  function languageLinks(){document.querySelectorAll('a[href]').forEach(a=>{if(a.hasAttribute('data-preserve-language'))return;const u=new URL(a.getAttribute('href'),location.href);if((u.origin===location.origin&&/\.html$/.test(u.pathname))||u.origin==='https://magic-kids-hub.baseem-n.chatgpt.site'||(['https://app.magickidsinstitute.com','https://magickids-panel.vercel.app'].includes(u.origin)&&(u.pathname.startsWith('/book/')||u.pathname==='/onboarding/public'||u.pathname==='/moxo'))){u.searchParams.set('lang',language);a.href=u.origin===location.origin?u.pathname+u.search+u.hash:u.href;}});}
+  function languageLinks(){document.querySelectorAll('a[href]').forEach(a=>{if(a.hasAttribute('data-preserve-language'))return;const u=new URL(a.getAttribute('href'),location.href);if((u.origin===location.origin&&/\.html$/.test(u.pathname))||u.origin==='https://magic-kids-hub.baseem-n.chatgpt.site'||(['https://app.magickidsinstitute.com','https://magickids-panel.vercel.app'].includes(u.origin)&&(u.pathname.startsWith('/book/')||u.pathname==='/onboarding/public'||u.pathname==='/moxo'||u.pathname==='/treatments'))){u.searchParams.set('lang',language);a.href=u.origin===location.origin?u.pathname+u.search+u.hash:u.href;}});}
   function applyLanguage(lang){
     if(!translations[lang])return;
     language=lang;root.lang=lang;root.dir=lang==='en'?'ltr':'rtl';
