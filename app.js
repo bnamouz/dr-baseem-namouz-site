@@ -56,6 +56,18 @@
   window.addEventListener('appinstalled',()=>{installed=true;installPrompt=null;updateInstallLabel();});
   document.querySelectorAll('[data-install]').forEach(b=>b.addEventListener('click',async()=>{if(installPrompt){const prompt=installPrompt;installPrompt=null;try{await prompt.prompt();await prompt.userChoice;}catch(_){document.getElementById('install-dialog')?.showModal();}}else document.getElementById('install-dialog')?.showModal();}));
 
+  const bookingDialog=document.getElementById('booking-dialog');
+  let bookingOpener=null;
+  document.querySelectorAll('[data-booking-open]').forEach(button=>button.addEventListener('click',event=>{
+    if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||!bookingDialog?.showModal)return;
+    event.preventDefault();bookingOpener=button;closeMenu();bookingDialog.showModal();
+    document.documentElement.classList.add('booking-modal-open');
+  }));
+  bookingDialog?.addEventListener('close',()=>{document.documentElement.classList.remove('booking-modal-open');bookingOpener?.focus();});
+  bookingDialog?.addEventListener('click',event=>{
+    if(event.target===bookingDialog){const rect=bookingDialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)bookingDialog.close();}
+  });
+  bookingDialog?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>bookingDialog.close()));
   const facts=document.querySelector('.family-facts');
   if(facts){
     const slides=[...facts.querySelectorAll('.fact-slide')], motion=window.matchMedia('(prefers-reduced-motion: reduce)');

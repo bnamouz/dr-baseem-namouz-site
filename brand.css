@@ -41,3 +41,13 @@ body[data-page="index"] main>.partner-strip:first-child{padding:22px 0 12px;back
 
 /* Private pediatric care: transparent quotes and coordination requests. */
 .private-care{padding-top:28px}.private-packages{border:0;padding:0;margin:26px 0}.private-packages legend{font-size:1.55rem;font-weight:800;margin-bottom:16px;color:#213e70}.private-option{display:flex;align-items:flex-start;gap:12px;cursor:pointer}.private-option input{width:21px;height:21px;accent-color:#ad285f;flex-shrink:0}.private-option:has(input:checked){border:2px solid #ad285f;background:#fff2f7;box-shadow:0 6px 20px #ad285f16}.private-option b,.private-option small{display:block}.private-option small{font-size:.875rem;line-height:1.7}.private-price{display:block;font-size:2.1rem;color:#213e70;margin:12px 0 5px}.private-request{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:start;margin-top:35px}.private-quote{background:#eaf7ff}.private-ack{display:flex;align-items:flex-start;gap:10px;margin:20px 0}.private-ack input{flex-shrink:0;width:21px;height:21px;accent-color:#ad285f}.private-care [hidden]{display:none!important}.private-care input:focus-visible{outline:3px solid #ad285f;outline-offset:3px}.main-nav a[href="/private-care.html"]{background:#edf8ff}.private-care .notice a{font-weight:800}@media(max-width:980px){.private-request{grid-template-columns:1fr}.private-quote{grid-row:1}}@media(max-width:680px){.private-packages .cards{grid-template-columns:1fr}.private-option{padding:20px}.private-price{font-size:1.85rem}}
+
+/* One entry point for existing appointment journeys. */
+.booking-dialog{margin:auto;background:#fff;width:min(580px,calc(100% - 32px));overflow:auto;box-shadow:0 24px 80px #173d6950}
+.booking-dialog::backdrop{background:#12335db3;backdrop-filter:blur(4px)}
+.booking-close{display:flex;justify-content:flex-end;margin:0 0 16px!important}
+.booking-close .button{min-height:44px;font-size:1rem;padding:8px 18px}
+.booking-dialog h2{font-size:clamp(1.5rem,5vw,2rem);line-height:1.5;margin-bottom:24px}
+.booking-choices{display:grid;gap:12px}.booking-choices .button{justify-content:space-between;text-align:start;white-space:normal;font-size:1rem;min-height:58px;padding:14px 20px}
+.booking-modal-open{overflow:hidden}
+@media(max-width:480px){.booking-dialog .dialog-inner{padding:22px}.booking-choices .button{padding:12px 16px}}

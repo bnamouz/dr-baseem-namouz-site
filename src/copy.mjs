@@ -1,5 +1,7 @@
 // Each entry has Hebrew, Arabic and English. All public copy is validated at build time.
 export const copy = {
+ 'u.bookOne':['קביעת תור','حجز موعد','Book an appointment'],
+ 'u.bookQuestion':['איזה תור תרצו לקבוע?','أي موعد ترغبون بحجزه؟','Which appointment would you like?'],
  'booking.card3_title':["מקבלים אישור", "تأكيد الحجز", "Receive confirmation"],
  'booking.card2_text':["ממלאים את פרטי הילד/ה וההורה ומאשרים את ההזמנה.", "أكملوا تفاصيل الطفل وولي الأمر وأكّدوا الحجز.", "Enter the child and parent details, then confirm the booking."],
  'booking.card2_title':["ממלאים פרטים", "إكمال التفاصيل", "Enter your details"],
