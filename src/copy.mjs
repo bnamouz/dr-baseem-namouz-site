@@ -1,5 +1,7 @@
 // Each entry has Hebrew, Arabic and English. All public copy is validated at build time.
 export const copy = {
+ 'u.youtubeChannel':['ערוץ המכון','قناة المعهد','Institute channel'],
+ 'u.youtubeLabel':['ערוץ היוטיוב של המכון — נפתח בלשונית חדשה','قناة المعهد على يوتيوب — تفتح في علامة تبويب جديدة','Institute YouTube channel — opens in a new tab'],
  'u.dashboardEntry':['כניסה לדאשבורד','الدخول إلى لوحة الإدارة','Open dashboard'],
  'u.bookOne':['קביעת תור','حجز موعد','Book an appointment'],
  'u.bookQuestion':['איזה תור תרצו לקבוע?','أي موعد ترغبون بحجزه؟','Which appointment would you like?'],
