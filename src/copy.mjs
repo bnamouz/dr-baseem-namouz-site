@@ -57,7 +57,7 @@ export const copy = {
 "f.5.tip":["צרו הרגל משפחתי: מכבים מסכים לפחות חצי שעה לפני השינה — גם ההורים.", "اعملوا عادة عائلية: نطفّي الشاشات قبل النوم بنص ساعة على الأقل، والأهل كمان.", "Make it a family habit: turn off screens at least half an hour before bedtime, parents too."],
 
  "u.travelInsurance":["ביטוח נסיעות לחו״ל", "تأمين السفر للخارج", "Travel insurance"],
- "u.insuranceHint":["לדף הבית בערבית", "الصفحة الرئيسية بالعربية", "Homepage in Arabic"],
+ "u.insuranceHint":["לרכישה ב־PassportCard · שפרעם לביטוח", "للشراء عبر PassportCard · شفاعمرو للتأمين", "Buy with PassportCard · Shfaram Insurance"],
  "u.esim":["חיבור eSIM לחו״ל", "اتصال eSIM للسفر", "Travel eSIM"],
  "u.comingSoon":["בקרוב", "قريبًا", "Coming soon"],
  "u.mksStore":["חנות המשחקים של MKS", "متجر ألعاب MKS", "MKS toy store"],
