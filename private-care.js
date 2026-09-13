@@ -6,12 +6,11 @@
  const chosen=()=>form.querySelector('input[name="package"]:checked');
  const money=n=>'₪'+Number(n).toLocaleString('en-US');
  let revealed=false;
- const source={h1:1200,h2:1000,h3:800,t1:500,t2:350,t3:250,m1:800};
+ const source={h1:1200,h2:1000,h3:800,t1:500,t2:350,t3:250,m1:800,a1:2000};
  function quote(id){
-  if(id==='a1'||(id.startsWith('h')&&(form.elements.distance.value==='2'||form.elements.night.checked)))return word('p.pending');
   let total=source[id];
-  if(id.startsWith('h'))total=Math.round((total+(form.elements.distance.value==='1'?500:0))*1.18);
-  if(id==='m1')total=Math.round(total*1.18);
+  if(id.startsWith('h'))total=Math.round((total+({0:0,1:500,2:2000}[form.elements.distance.value]||0)+(form.elements.night.checked?500:0))*1.18);
+  if(id==='m1'||id==='a1')total=Math.round(total*1.18);
   return money(total)+' · '+word(id==='m1'?'p.approx':'p.total');
  }
  function render(){

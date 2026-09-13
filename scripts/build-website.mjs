@@ -4,7 +4,7 @@ import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
 import {copy, activities} from '../src/copy.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const version='20260913-private-moxo-1';
+const version='20260913-private-prices-2';
 const origin='https://magickidsinstitute.com';
 const languages=['he','ar','en'];
 const texts=JSON.parse(fs.readFileSync(path.join(root,'src/translations.json'),'utf8'));
