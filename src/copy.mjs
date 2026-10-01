@@ -121,6 +121,7 @@ export const copy = {
  'u.pedsSecretary':['מזכירה בשעות פעילות המרפאה','السكرتيرة خلال ساعات عمل العيادة','Secretary during clinic opening hours'],
  'u.instituteContact':['יצירת קשר עם המכון','التواصل مع المعهد','Contact the institute'],
  'u.bookPeds':['תור למרפאת ילדים','حجز موعد لعيادة الأطفال','Book pediatrics'],
+  'u.bookFollowup':['מעקב / ביקורת קשב — ללא רישום מחדש','متابعة الانتباه والتركيز — دون تسجيل جديد','ADHD follow-up — no new registration'],
  'u.bookAdhd':['תור למרפאת קשב וריכוז','حجز موعد لعيادة الانتباه والتركيز','Book the ADHD clinic'],
  'u.chooseClinic':['בוחרים מרפאה, קובעים תור.','اختاروا العيادة واحجزوا موعدًا.','Choose your clinic. Book your visit.'],
  'u.separateCalendars':['לכל מרפאה יומן תורים נפרד. בחרו את השירות הרצוי כדי לראות את אפשרויות ההזמנה שלו.','لكل عيادة تقويم مواعيد مستقل. اختاروا الخدمة لعرض خيارات الحجز الخاصة بها.','Each clinic has its own appointment calendar. Choose the service to view its booking options.'],
