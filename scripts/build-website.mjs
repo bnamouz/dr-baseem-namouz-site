@@ -4,7 +4,7 @@ import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
 import {copy, activities} from '../src/copy.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const version='20261001-adhd-followup';
+const version='20260913-private-prices-2';
 const origin='https://magickidsinstitute.com';
 const languages=['he','ar','en'];
 const texts=JSON.parse(fs.readFileSync(path.join(root,'src/translations.json'),'utf8'));
@@ -19,14 +19,13 @@ const t=(key,tag='span',attrs='')=>`<${tag} data-i18n="${key}" ${attrs}>${esc(va
 const link=(url,key,cls='button',attrs='')=>`<a class="${cls}" href="${esc(url)}" ${attrs}>${t(key)}<span aria-hidden="true" class="arrow">↗</span></a>`;
 const pill=key=>t(key,'span','class="pill"');
 const bookingUrl=clinic=>clinic==='adhd'?'https://magickids-panel.vercel.app/onboarding/public':'https://app.magickidsinstitute.com/book/pediatrics';
-const followupUrl='https://app.magickidsinstitute.com/book/adhd?visitType=followup';
 const treatmentUrl='https://app.magickidsinstitute.com/treatments';
 const treatmentCTA=()=>section('u.treatmentRequest','u.treatmentRequest',`${t('u.treatmentFlow','p','class="lead"')}${link(treatmentUrl,'u.treatmentRequest')}`,'treatment-request','soft');
 const bookingTrigger=(cls='button')=>`<a href="/booking.html" class="${cls}" data-booking-open aria-haspopup="dialog" aria-controls="booking-dialog">${t('u.bookOne')}</a>`;
 const buttons=()=>`<div class="actions">${bookingTrigger()}</div>`;
-const bookingDialog=()=>`<dialog id="booking-dialog" class="booking-dialog" aria-labelledby="booking-title"><div class="dialog-inner"><form method="dialog" class="booking-close"><button class="button outline" autofocus>${t('u.close')}</button></form>${t('u.bookQuestion','h2','id="booking-title"')}<div class="booking-choices">${link(bookingUrl('pediatrics'),'u.bookPeds','button outline')}${link(bookingUrl('adhd'),'u.bookAdhd','button outline')}${link(followupUrl,'u.bookFollowup','button outline')}${link('/index.html#moxo','u.moxoBook','button outline')}${link('/moxo-home.html','p.moxo','button outline')}${link(treatmentUrl,'u.treatmentRequest','button outline')}${link('/private-care.html','p.nav','button outline')}</div></div></dialog>`;
+const bookingDialog=()=>`<dialog id="booking-dialog" class="booking-dialog" aria-labelledby="booking-title"><div class="dialog-inner"><form method="dialog" class="booking-close"><button class="button outline" autofocus>${t('u.close')}</button></form>${t('u.bookQuestion','h2','id="booking-title"')}<div class="booking-choices">${link(bookingUrl('pediatrics'),'u.bookPeds','button outline')}${link(bookingUrl('adhd'),'u.bookAdhd','button outline')}${link('/index.html#moxo','u.moxoBook','button outline')}${link('/moxo-home.html','p.moxo','button outline')}${link(treatmentUrl,'u.treatmentRequest','button outline')}${link('/private-care.html','p.nav','button outline')}</div></div></dialog>`;
 const pediatricsPhones=()=>`<div class="clinic-phones"><a href="https://wa.me/972543496656">${t('u.pedsPhone')}<b dir="ltr">054-349-6656</b></a><a href="tel:+97248717911">${t('u.pedsSecretary')}<b dir="ltr">04-871-7911</b></a></div>`;
-const clinicCards=()=>`<div class="cards two clinic-options"><article class="card"><span class="number" aria-hidden="true">01</span>${t('u.bookPeds','h3')}${t('u.pedsCalendar','p')}${link(bookingUrl('pediatrics'),'u.bookPeds')}${pediatricsPhones()}</article><article class="card"><span class="number" aria-hidden="true">02</span>${t('u.bookAdhd','h3')}${t('u.adhdCalendar','p')}${link(bookingUrl('adhd'),'u.bookAdhd','button outline')}${link(followupUrl,'u.bookFollowup','button outline')}</article></div>${t('u.bookingConfirmation','p','class="fine"')}`;
+const clinicCards=()=>`<div class="cards two clinic-options"><article class="card"><span class="number" aria-hidden="true">01</span>${t('u.bookPeds','h3')}${t('u.pedsCalendar','p')}${link(bookingUrl('pediatrics'),'u.bookPeds')}${pediatricsPhones()}</article><article class="card"><span class="number" aria-hidden="true">02</span>${t('u.bookAdhd','h3')}${t('u.adhdCalendar','p')}${link(bookingUrl('adhd'),'u.bookAdhd','button outline')}</article></div>${t('u.bookingConfirmation','p','class="fine"')}`;
 const section=(eyebrow,title,body,id='',cls='')=>`<section ${id?`id="${id}"`:''} class="section ${cls}"><div class="wrap"><div class="section-heading">${eyebrow?t(eyebrow,'p','class="eyebrow"'):''}${t(title,'h2')}</div>${body}</div></section>`;
 function cards(prefix,count,title='title',body='text'){return `<div class="cards three">${Array.from({length:count},(_,i)=>`<article class="card"><span class="number" aria-hidden="true">0${i+1}</span>${t(prefix+(i+1)+'_'+title,'h3')}${t(prefix+(i+1)+'_'+body,'p')}</article>`).join('')}</div>`;}
 const photo=(cls='portrait')=>`<figure class="${cls}"><img src="assets/doctor.jpg" width="700" height="830" alt="${esc(value('u.photo'))}" data-i18n-alt="u.photo" fetchpriority="high"><figcaption>${t('header.dr_name','b')}${t('header.dr_sub','span')}</figcaption></figure>`;
