@@ -98,7 +98,7 @@
   const lang=document.documentElement.lang in labels?document.documentElement.lang:'ar';
   document.querySelectorAll('a[href]').forEach(a=>{
    const url=new URL(a.href,location.href);
-   if(url.hostname==='app.magickidsinstitute.com'&&url.pathname==='/treatments'&&!url.searchParams.has('treatment')&&!a.nextElementSibling?.hasAttribute('data-class-entry')){
+   if(url.hostname==='app.magickidsinstitute.com'&&url.pathname==='/treatments'&&!url.searchParams.has('treatment')&&!a.nextElementSibling?.hasAttribute('data-class-entry')&&!(a.closest('main')&&document.querySelector('[data-class-section]'))){
     const link=document.createElement('a');link.className=a.className;link.setAttribute('data-class-entry','');a.after(link);
    }
    if(url.searchParams.get('treatment')==='groups'||(url.pathname.endsWith('activities.html')&&url.searchParams.has('activity'))){
@@ -106,7 +106,16 @@
    }
   });
   document.querySelectorAll('[data-class-entry]').forEach(a=>{a.href='https://app.magickidsinstitute.com/classes?lang='+lang;a.textContent=labels[lang];});
+  const intro={he:'רשימות המתעניינים פתוחות לפי סוג החוג. כשקבוצה תיפתח נעדכן את ההורים להשלמת הרשמה. אין תשלום בשלב זה.',ar:'قوائم المهتمين مفتوحة حسب الدورة. عند افتتاح مجموعة نتواصل مع الأهل لإتمام التسجيل. لا يوجد دفع في هذه المرحلة.',en:'Open interest lists by class. Parents will be contacted when a group opens to complete registration. No payment at this stage.'};
+  const treatmentIntro={he:'בחרו את סוג הטיפול והשאירו פרטים. הצוות יחזור לתיאום לפי התאמה וזמינות. הפנייה אינה קביעת תור.',ar:'اختاروا نوع العلاج واتركوا بياناتكم. يتواصل الفريق للتنسيق حسب الملاءمة والتوفر. الطلب ليس موعدًا مؤكدًا.',en:'Choose a treatment and leave your details. Staff will coordinate based on suitability and availability. A request is not a confirmed appointment.'};
+  document.querySelectorAll('[data-i18n="u.treatmentFlow"]').forEach(p=>p.textContent=treatmentIntro[lang]);
+  if(document.body.dataset.page==='booking'){
+   const entry=document.querySelector('main [data-class-entry]');
+   if(entry&&!entry.closest('[data-class-section]')){const section=document.createElement('section');section.className='section';section.setAttribute('data-class-section','');const wrap=document.createElement('div');wrap.className='wrap';const h=document.createElement('h2');h.setAttribute('data-class-heading','');const p=document.createElement('p');p.setAttribute('data-class-description','');const prior=entry.closest('section');wrap.append(h,p,entry);section.append(wrap);prior.after(section);}
+  }
+  document.querySelectorAll('[data-class-heading]').forEach(h=>h.textContent=labels[lang]);document.querySelectorAll('[data-class-description]').forEach(p=>p.textContent=intro[lang]);
   if(document.body.dataset.page==='activities'){
+   const section=document.querySelector('#enquiry');if(section){section.querySelectorAll('h2').forEach(h=>h.textContent=labels[lang]);section.querySelectorAll('[data-i18n="u.treatmentFlow"]').forEach(p=>p.textContent=intro[lang]);section.querySelectorAll('a').forEach(a=>{a.textContent=labels[lang];a.href='https://app.magickidsinstitute.com/classes?lang='+lang;});}
    const form=document.querySelector('[data-enquiry="activity"], [data-enquiry="activities"]');
    if(form){const a=document.createElement('a');a.className='button';a.setAttribute('data-class-entry','');a.href='https://app.magickidsinstitute.com/classes?lang='+lang;a.textContent=labels[lang];form.replaceWith(a);}
   }
