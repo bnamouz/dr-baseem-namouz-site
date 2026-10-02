@@ -61,3 +61,6 @@ body[data-page="index"] main>.partner-strip:first-child{padding:22px 0 12px;back
 [data-private-care] select{font:inherit;padding:.7rem;max-width:100%;border:1px solid #b9d3dd;border-radius:.6rem;background:white;color:#203e70}
 [data-package-price]{display:block;margin-top:.7rem;color:#075a5d;font-size:1rem}
 [data-private-quote]{margin-top:1.5rem}
+
+/* Primary appointment choices share one row on wide screens. */
+.booking-dialog{width:min(900px,calc(100% - 32px))}.booking-primary-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.booking-primary-row .button{height:100%}@media(max-width:680px){.booking-primary-row{grid-template-columns:1fr}}
