@@ -90,3 +90,26 @@
   const aliases={'#vision':'#services','#contact':'#contact-home','#main-services':'#services'};
   if(document.body.dataset.page==='index'&&aliases[location.hash])document.querySelector(aliases[location.hash])?.scrollIntoView();
 })();
+
+// Classes have their own open interest lists, separate from treatment intake.
+(function(){
+ const labels={he:'חוגי המכון — הרשמה לרשימת מתעניינים',ar:'دورات المعهد — التسجيل لقائمة المهتمين',en:'Institute classes — join an interest list'};
+ function updateClasses(){
+  const lang=document.documentElement.lang in labels?document.documentElement.lang:'ar';
+  document.querySelectorAll('a[href]').forEach(a=>{
+   const url=new URL(a.href,location.href);
+   if(url.hostname==='app.magickidsinstitute.com'&&url.pathname==='/treatments'&&!url.searchParams.has('treatment')&&!a.nextElementSibling?.hasAttribute('data-class-entry')){
+    const link=document.createElement('a');link.className=a.className;link.setAttribute('data-class-entry','');a.after(link);
+   }
+   if(url.searchParams.get('treatment')==='groups'||(url.pathname.endsWith('activities.html')&&url.searchParams.has('activity'))){
+    a.href='https://app.magickidsinstitute.com/classes?lang='+lang+'&activity='+encodeURIComponent(url.searchParams.get('activity')||'');
+   }
+  });
+  document.querySelectorAll('[data-class-entry]').forEach(a=>{a.href='https://app.magickidsinstitute.com/classes?lang='+lang;a.textContent=labels[lang];});
+  if(document.body.dataset.page==='activities'){
+   const form=document.querySelector('[data-enquiry="activity"], [data-enquiry="activities"]');
+   if(form){const a=document.createElement('a');a.className='button';a.setAttribute('data-class-entry','');a.href='https://app.magickidsinstitute.com/classes?lang='+lang;a.textContent=labels[lang];form.replaceWith(a);}
+  }
+ }
+ updateClasses();document.addEventListener('magic-language',updateClasses);
+})();
