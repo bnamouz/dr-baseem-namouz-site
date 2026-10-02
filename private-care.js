@@ -35,7 +35,7 @@
   if(digits.length<9||digits.length>15||!/^[+0-9() .-]+$/.test(phone)||form.elements.name.value.trim().length<2||(chosen().dataset.kind==='home'&&form.elements.city.value.trim().length<2)){status.textContent=word('u.invalidForm');return;}
   if(event.submitter?.value==='quote'||!revealed){revealed=true;render();panel.scrollIntoView({block:'nearest',behavior:'smooth'});return;}
   const option=chosen();
-  const lines=[word('p.cta'),word('p.'+option.dataset.kind)+' — '+word('p.'+option.value),word('p.quote')+': '+quote(option.value),word('p.contact')+': '+form.elements.name.value.trim(),word('u.phone')+': '+phone];
+  const lines=[word(option.dataset.kind==='moxo'?'hm.request':'p.cta'),word('p.'+option.dataset.kind)+' — '+word('p.'+option.value),word('p.quote')+': '+quote(option.value),word('p.contact')+': '+form.elements.name.value.trim(),word('u.phone')+': '+phone];
   if(option.dataset.kind==='home'){lines.push(word('p.city')+': '+form.elements.city.value.trim(),word('p.distance')+': '+word('p.d'+form.elements.distance.value));if(form.elements.night.checked)lines.push(word('p.night'));}
   lines.push(word('p.ack'));
   const text=lines.join('\n'),a=document.createElement('a');
