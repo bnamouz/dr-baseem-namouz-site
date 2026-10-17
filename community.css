@@ -4,3 +4,4 @@
 .community-launch{background:#ffc533;font-size:16px;padding:15px 22px;animation:review-pulse 2.4s ease-in-out infinite}.community-launch>span:first-child{font-size:26px}
 @media(max-width:680px){.reviews-head{flex-direction:column;align-items:stretch}.review-cta-btn{width:100%;justify-content:center;font-size:1.1rem;padding:16px 20px}}
 @media(prefers-reduced-motion:reduce){.review-cta-btn,.community-launch{animation:none}}
+.review-more{margin:2px 0 0;font-weight:800}.review-more a{color:#08747b;text-decoration:underline;text-underline-offset:4px}
