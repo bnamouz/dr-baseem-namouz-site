@@ -408,7 +408,8 @@
     "m.contact.map": "הגעה · Google Maps",
     "m.contact.calendar": "בחירת מועד ביומן",
     "m.activities.email": "לפרטים על החוגים במייל",
-    "m.join.email": "פנייה להצטרפות במייל"
+    "m.join.email": "פנייה להצטרפות במייל",
+    "u.reviewsLink": "חוות דעת"
   },
   "ar": {
     "pageTitle": "معهد أطفال السحر | طب، أنشطة ومجتمع",
@@ -819,7 +820,8 @@
     "m.contact.map": "الوصول · Google Maps",
     "m.contact.calendar": "اختيار موعد في التقويم",
     "m.activities.email": "تفاصيل الأنشطة بالبريد",
-    "m.join.email": "طلب الانضمام بالبريد"
+    "m.join.email": "طلب الانضمام بالبريد",
+    "u.reviewsLink": "آراء الأهل"
   },
   "en": {
     "pageTitle": "Magic Kids Institute | Care, activities & community",
@@ -1230,6 +1232,7 @@
     "m.contact.map": "Directions · Google Maps",
     "m.contact.calendar": "Choose a calendar appointment",
     "m.activities.email": "Ask about activities by email",
-    "m.join.email": "Apply by email"
+    "m.join.email": "Apply by email",
+    "u.reviewsLink": "Reviews"
   }
 }
