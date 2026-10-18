@@ -409,7 +409,16 @@
     "m.contact.calendar": "בחירת מועד ביומן",
     "m.activities.email": "לפרטים על החוגים במייל",
     "m.join.email": "פנייה להצטרפות במייל",
-    "u.reviewsLink": "חוות דעת"
+    "u.reviewsLink": "חוות דעת",
+    "legal.eyebrow": "מידע משפטי",
+    "legal.updated": "עודכן לאחרונה: 18 באוקטובר 2026",
+    "legal.contactTitle": "יצירת קשר",
+    "legal.privacy": "מדיניות הפרטיות",
+    "legal.privacyDesc": "איזה מידע נאסף באתר ובמערכות מכון ילדי הקסם, למה הוא משמש וכיצד הוא נשמר.",
+    "legal.terms": "תנאי שימוש",
+    "legal.termsDesc": "התנאים לשימוש באתר מכון ילדי הקסם ובשירותים המקוונים שלו.",
+    "legal.accessibility": "הצהרת נגישות",
+    "legal.accessibilityDesc": "מה עשינו כדי שאתר מכון ילדי הקסם יהיה נגיש, ואיך לפנות אלינו בנושא נגישות."
   },
   "ar": {
     "pageTitle": "معهد أطفال السحر | طب، أنشطة ومجتمع",
@@ -821,7 +830,16 @@
     "m.contact.calendar": "اختيار موعد في التقويم",
     "m.activities.email": "تفاصيل الأنشطة بالبريد",
     "m.join.email": "طلب الانضمام بالبريد",
-    "u.reviewsLink": "آراء الأهل"
+    "u.reviewsLink": "آراء الأهل",
+    "legal.eyebrow": "معلومات قانونية",
+    "legal.updated": "آخر تحديث: 18 تشرين الأول 2026",
+    "legal.contactTitle": "التواصل",
+    "legal.privacy": "سياسة الخصوصية",
+    "legal.privacyDesc": "ما المعلومات التي تُجمع في موقع ومنظومات معهد أطفال السحر، ولماذا تُستخدم وكيف تُحفظ.",
+    "legal.terms": "شروط الاستخدام",
+    "legal.termsDesc": "شروط استخدام موقع معهد أطفال السحر وخدماته الإلكترونية.",
+    "legal.accessibility": "بيان إتاحة الوصول",
+    "legal.accessibilityDesc": "ما قمنا به لجعل موقع معهد أطفال السحر متاحًا، وكيف تتواصلون معنا بشأن إتاحة الوصول."
   },
   "en": {
     "pageTitle": "Magic Kids Institute | Care, activities & community",
@@ -1233,6 +1251,15 @@
     "m.contact.calendar": "Choose a calendar appointment",
     "m.activities.email": "Ask about activities by email",
     "m.join.email": "Apply by email",
-    "u.reviewsLink": "Reviews"
+    "u.reviewsLink": "Reviews",
+    "legal.eyebrow": "Legal",
+    "legal.updated": "Last updated: 18 October 2026",
+    "legal.contactTitle": "Contact",
+    "legal.privacy": "Privacy policy",
+    "legal.privacyDesc": "What information Magic Kids Institute collects on its website and systems, why, and how it is protected.",
+    "legal.terms": "Terms of use",
+    "legal.termsDesc": "Terms for using the Magic Kids Institute website and online services.",
+    "legal.accessibility": "Accessibility statement",
+    "legal.accessibilityDesc": "What we have done to make the Magic Kids Institute website accessible, and how to contact us about accessibility."
   }
 }
