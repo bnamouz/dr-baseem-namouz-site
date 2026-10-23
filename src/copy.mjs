@@ -101,6 +101,8 @@ export const copy = {
  "u.insuranceHint":["לרכישה ב־PassportCard · שפרעם לביטוח", "للشراء عبر PassportCard · شفاعمرو للتأمين", "Buy with PassportCard · Shfaram Insurance"],
  "u.esim":["חיבור eSIM לחו״ל", "اتصال eSIM للسفر", "Travel eSIM"],
  "u.comingSoon":["בקרוב", "قريبًا", "Coming soon"],
+ "u.devTitle":["הערכת התפתחות הילד", "تقييم تطوّر الطفل", "Child Development Assessment"],
+ "u.devHint":["פתיחת תיק דרך המכון · בתיאום עם ההורים", "فتح ملف عبر المعهد · بالتنسيق مع الأهل", "File opened by the institute · in coordination with parents"],
  "u.mksStore":["חנות המשחקים של MKS", "متجر ألعاب MKS", "MKS toy store"],
  "u.mksAccess":["כניסה לחנות · לפי הרשאות גישה", "دخول المتجر · حسب صلاحيات الوصول", "Open store · access permissions apply"],
  "u.quickServices":["עוד מבית ילדי הקסם", "المزيد من أطفال السحر", "More from Magic Kids"],
