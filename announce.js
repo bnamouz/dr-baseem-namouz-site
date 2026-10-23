@@ -4,7 +4,7 @@
    visitor already arrived at the booking link or asked for reduced motion only in the animation sense. */
 (function(){
   var cfg=(window.MAGIC_SITE||{}).announcement; if(!cfg||!cfg.enabled)return;
-  var today=new Date().toISOString().slice(0,10); if((cfg.from&&today<cfg.from)||(cfg.until&&today>cfg.until))return;
+  var today;try{today=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Jerusalem',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());}catch(_){today=new Date().toISOString().slice(0,10);} if((cfg.from&&today<cfg.from)||(cfg.until&&today>cfg.until))return;
   var key='magic-announcement:'+cfg.id; try{if(sessionStorage.getItem(key))return;}catch(_){}
   var q=new URLSearchParams(location.search).get('lang'),lang=document.documentElement.lang||'ar';
   if(['he','ar','en'].indexOf(q)>-1)lang=q; else{try{lang=localStorage.getItem('magic-language')||lang;}catch(_){}} if(['he','ar','en'].indexOf(lang)<0)lang='ar';
