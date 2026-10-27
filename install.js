@@ -67,8 +67,10 @@
   async function install(){
     track('install_button_click');
     if(deferred){var p=deferred;deferred=null;btn.disabled=true;var label=btn.querySelector('.mk-install__long').textContent;btn.querySelector('.mk-install__long').textContent=T[lang()].wait;
-      try{p.prompt();var c=await p.userChoice;if(c&&c.outcome==='accepted'){track('install_accepted');return;}}catch(_){}
-      btn.disabled=false;btn.querySelector('.mk-install__long').textContent=label;return;}
+      var restored=false;function restore(){if(restored)return;restored=true;btn.disabled=false;btn.querySelector('.mk-install__long').textContent=label;}
+      var guard=setTimeout(restore,8000);
+      try{p.prompt();var c=await p.userChoice;clearTimeout(guard);if(c&&c.outcome==='accepted'){track('install_accepted');return;}}catch(_){clearTimeout(guard);restore();openSheet();return;}
+      restore();return;}
     openSheet();
   }
   function mount(){
