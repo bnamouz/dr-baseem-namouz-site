@@ -1,0 +1,66 @@
+/* Seasonal decoration layer (Halloween 2026). Activated by season.js only inside the configured date window
+   (window.MAGIC_SITE.season in site-config.js). Everything here is decorative: aria-hidden, no layout changes
+   except the dismissible greeting strip above the hero. Motion is disabled for prefers-reduced-motion. */
+html.mk-halloween{--hw-orange:#f58a1f;--hw-orange-dark:#d96f0b;--hw-purple:#5b2a86;--hw-purple-dark:#3e1a5e;--hw-cream:#fff4e3;--hw-night:#213e70}
+
+/* Greeting strip (in flow, above the hero) */
+.mk-hw-bar{position:relative;z-index:2;background:linear-gradient(90deg,var(--hw-purple) 0%,#7a3aa8 45%,var(--hw-orange) 100%);color:#fff;padding:11px 16px 13px;display:flex;align-items:center;justify-content:center;gap:14px;font-weight:700;font-size:1rem;line-height:1.45;text-align:center;box-shadow:0 6px 20px #3e1a5e26}
+.mk-hw-bar__icon{width:30px;height:30px;flex-shrink:0;filter:drop-shadow(0 2px 2px #0003)}
+.mk-hw-bar__text{max-width:860px}
+.mk-hw-bar__text small{display:block;font-weight:500;font-size:.86rem;opacity:.92}
+.mk-hw-bar__close{position:absolute;inset-inline-end:10px;top:50%;transform:translateY(-50%);width:34px;height:34px;border:0;border-radius:50%;background:#ffffff2e;color:#fff;font-size:20px;line-height:1;cursor:pointer}
+.mk-hw-bar__close:hover{background:#ffffff4a}
+@media(max-width:680px){.mk-hw-bar{font-size:.9rem;padding:10px 14px 11px;padding-inline-end:50px;gap:10px;justify-content:flex-start;text-align:start}.mk-hw-bar__icon{width:26px;height:26px}.mk-hw-bar__text small{font-size:.8rem}}
+
+/* Bunting hanging from the strip into the hero */
+.mk-hw-bunting{position:absolute;left:0;right:0;top:0;height:46px;pointer-events:none;z-index:1;overflow:hidden}
+.mk-hw-bunting svg{width:100%;height:100%;display:block}
+.mk-hw-bunting .mk-hw-flag{transform-box:fill-box;transform-origin:50% 0;animation:mkHwSway 4s ease-in-out infinite}
+.mk-hw-bunting .mk-hw-flag:nth-child(even){animation-delay:-2s}
+
+/* Floating hero decorations */
+.mk-hw-host{position:relative}
+.mk-hw-decor{position:absolute;pointer-events:none;z-index:1;filter:drop-shadow(0 6px 10px #213e7022)}
+.mk-hw-decor svg{display:block;width:100%;height:auto}
+.mk-hw-decor--ghost{width:92px;inset-inline-start:3%;top:120px;animation:mkHwFloat 5.5s ease-in-out infinite}
+.mk-hw-decor--pumpkin{width:118px;inset-inline-end:2.5%;bottom:28px;animation:mkHwBob 6s ease-in-out infinite}
+.mk-hw-decor--pumpkin-small{width:66px;inset-inline-start:7%;bottom:60px;animation:mkHwBob 7s ease-in-out infinite reverse}
+.mk-hw-decor--bat{width:58px;inset-inline-end:14%;top:70px;animation:mkHwFlutter 3.2s ease-in-out infinite}
+.mk-hw-decor--bat2{width:40px;inset-inline-end:6%;top:128px;animation:mkHwFlutter 3.8s ease-in-out infinite reverse}
+.mk-hw-decor--moon{width:110px;inset-inline-start:12%;top:60px;opacity:.95}
+.mk-hw-decor--spider{width:54px;inset-inline-start:0;top:46px}
+.mk-hw-decor--spider svg{overflow:visible}
+@media(max-width:900px){.mk-hw-decor--moon,.mk-hw-decor--bat2,.mk-hw-decor--pumpkin-small,.mk-hw-decor--spider{display:none}.mk-hw-decor--ghost{width:62px;top:auto;bottom:40px}.mk-hw-decor--pumpkin{width:78px;bottom:10px}.mk-hw-decor--bat{width:42px;top:60px}}
+
+/* Witch hat on the logo */
+.mk-halloween .brand{position:relative}
+.mk-hw-hat{position:absolute;width:44px;height:38px;top:-16px;inset-inline-start:28px;pointer-events:none;z-index:2;filter:drop-shadow(0 2px 2px #0002)}
+html[dir=ltr] .mk-hw-hat{inset-inline-start:30px}
+@media(max-width:900px){.mk-hw-hat{width:36px;height:31px;top:-12px}}
+
+/* App page hero: twilight tint + orange install button */
+.mk-halloween [data-page=app] .page-hero{background:linear-gradient(180deg,#d8f0ff 0%,#e9e1fb 55%,#ffe9d2 100%);overflow:hidden}
+.mk-halloween [data-page=app] .page-hero .button.yellow{background:var(--hw-orange);color:#fff;box-shadow:0 5px 0 #a3520a33}
+.mk-halloween [data-page=app] .page-hero .button.yellow:hover{background:var(--hw-orange-dark)}
+.mk-halloween [data-page=app] .page-hero .eyebrow{color:var(--hw-purple)}
+.mk-halloween [data-page=app] .app-feature{position:relative}
+
+/* Home hero: seasonal accent on the eyebrow and the name chip */
+.mk-halloween .home-hero .eyebrow{color:var(--hw-purple)}
+
+@keyframes mkHwFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-14px) rotate(3deg)}}
+@keyframes mkHwBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes mkHwFlutter{0%,100%{transform:translate(0,0) rotate(-6deg)}50%{transform:translate(-10px,-12px) rotate(6deg)}}
+@keyframes mkHwSway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+@media(prefers-reduced-motion:reduce){.mk-hw-decor,.mk-hw-bunting .mk-hw-flag{animation:none!important}}
+@media print{.mk-hw-bar,.mk-hw-bunting,.mk-hw-decor,.mk-hw-hat{display:none!important}}
+
+/* Inner pages (.page-hero): text is start-aligned, so decorations live on the free inline-end side */
+.page-hero.mk-hw-host .mk-hw-decor--moon{inset-inline-start:auto;inset-inline-end:4%;top:56px}
+.page-hero.mk-hw-host .mk-hw-decor--bat{inset-inline-end:16%;top:64px}
+.page-hero.mk-hw-host .mk-hw-decor--bat2{inset-inline-end:11%;top:140px}
+.page-hero.mk-hw-host .mk-hw-decor--ghost{inset-inline-start:auto;inset-inline-end:14%;top:auto;bottom:34px}
+.page-hero.mk-hw-host .mk-hw-decor--pumpkin{inset-inline-end:2.5%;bottom:22px}
+.page-hero.mk-hw-host .mk-hw-decor--pumpkin-small{inset-inline-start:auto;inset-inline-end:24%;bottom:26px}
+.page-hero.mk-hw-host .mk-hw-decor--spider{inset-inline-start:auto;inset-inline-end:2%}
+@media(max-width:900px){.page-hero.mk-hw-host .mk-hw-decor--ghost{display:none}body:not([data-page=app]) .page-hero.mk-hw-host .mk-hw-decor--pumpkin{display:none}.page-hero.mk-hw-host .mk-hw-decor--pumpkin{width:64px;bottom:8px;inset-inline-end:3%}.page-hero.mk-hw-host .mk-hw-decor--bat{inset-inline-end:6%;top:56px}}

@@ -17,6 +17,18 @@ window.MAGIC_SITE = {
       en: { badge: 'New at the pediatric clinic', title: 'Flu vaccinations have started', body: 'Flu season vaccinations are open at Dr. Baseem Namouz\'s pediatric clinic. Book your child\'s shot in one click – a short visit at 21 Tawfiq Ziad St., Shefa-Amr.', button: 'Book a flu vaccination', close: 'Close' }
     }
   },
+  season: {
+    id: 'halloween-2026',
+    theme: 'halloween',
+    enabled: true,
+    from: '2026-10-30',
+    until: '2026-11-01',
+    text: {
+      he: { title: 'האלווין שמח! 🎃', body: 'מתחפשים, חוגגים ונהנים – בבטחה. מאחלים צוות מכון ילדי הקסם ומרפאת הילדים של ד״ר בסים נמוז.', close: 'סגירה' },
+      ar: { title: 'هالوين سعيد! 🎃', body: 'نتنكّر ونحتفل ونستمتع – بأمان. مع تحيات طاقم معهد أطفال السحر وعيادة الأطفال عند د. بسيم نموز.', close: 'إغلاق' },
+      en: { title: 'Happy Halloween! 🎃', body: 'Dress up, celebrate and have fun – safely. Warm wishes from the Magic Kids Institute and Dr. Baseem Namouz\'s pediatric clinic team.', close: 'Close' }
+    }
+  },
   google: {
     analyticsId: '',
     searchConsoleVerification: '',
