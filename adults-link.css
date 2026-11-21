@@ -1,0 +1,6 @@
+.home-centered .home-booking{flex-direction:column;align-items:center;gap:14px}
+.adults-entry{margin:0;text-align:center}
+.adults-entry a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:6px 14px;border-radius:999px;font-weight:700;font-size:1rem;color:#1d3a6e;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px}
+.adults-entry a:hover{background:#ffffffb3;text-decoration-thickness:2.5px}
+.adults-entry a:focus-visible{outline:3px solid #b3245f;outline-offset:2px}
+.adults-entry .arrow{font-size:.95em}
