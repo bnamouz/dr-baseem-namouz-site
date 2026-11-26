@@ -19,7 +19,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://magickidsinstitute.com';
-const VERSION = '20261126-seo';
+const VERSION = '20261126-doctor-profile';
 const CHECK = process.argv.includes('--check');
 // Pages that get their own /he/ and /en/ address. Keep in sync with LOCAL_PAGES in app.js.
 const LOCALIZED = ['index', 'adhd', 'child-development', 'moxo-home', 'private-care', 'treatments', 'about', 'activities', 'recruit', 'booking', 'contact', 'workshop-register', 'doctors', 'app', 'privacy', 'terms', 'accessibility'];
@@ -105,10 +105,24 @@ function structuredData(page, lang, title) {
   if (page === 'index') graph = [institute, clinic, { '@type': 'WebSite', '@id': ORIGIN + '/#website', url: ORIGIN + '/', name: FACTS.institute[lang], inLanguage: lang, publisher: { '@id': institute['@id'] } }];
   else if (page === 'contact') graph = [institute, clinic, crumbs];
   else if (page === 'about') graph = [{ '@type': 'ProfilePage', url: pageUrl(page, lang), inLanguage: lang, mainEntity: { '@type': 'Person', '@id': ORIGIN + '/#doctor', name: FACTS.doctor[lang], jobTitle: FACTS.role[lang], image: ORIGIN + '/assets/doctor.jpg', worksFor: { '@id': institute['@id'] } } }, institute, crumbs];
-  else if (page === 'adhd') {
+  else if (page === 'adhd' || page === 'doctors') {
+    const prefix = page === 'adhd' ? 'adhd' : 'doc';
     const questions = [];
-    for (let i = 1; T[lang][`adhd.faq${i}_q`]; i++) questions.push({ '@type': 'Question', name: T[lang][`adhd.faq${i}_q`], acceptedAnswer: { '@type': 'Answer', text: T[lang][`adhd.faq${i}_a`] } });
+    for (let i = 1; T[lang][`${prefix}.faq${i}_q`]; i++) {
+      questions.push({ '@type': 'Question', name: T[lang][`${prefix}.faq${i}_q`], acceptedAnswer: { '@type': 'Answer', text: T[lang][`${prefix}.faq${i}_a`] } });
+    }
     graph = [{ '@type': 'FAQPage', url: pageUrl(page, lang), inLanguage: lang, mainEntity: questions }, institute, crumbs];
+    if (page === 'doctors') {
+      const organization = { '@id': institute['@id'] };
+      graph.unshift({
+        '@type': 'Physician', '@id': pageUrl(page, 'ar') + '#physician', name: FACTS.doctor[lang],
+        url: pageUrl(page, lang), image: clinic.image, medicalSpecialty: clinic.medicalSpecialty,
+        knowsAbout: [words(page, lang, 'doc.area1_title'), words(page, lang, 'doc.area2_title'), words(page, lang, 'doc.area3_title')],
+        parentOrganization: organization,
+        telephone: institute.telephone, address: institute.address,
+        availableLanguage: ['Arabic', 'Hebrew'],
+      });
+    }
   } else graph = [crumbs];
   return `<script type="application/ld+json" data-seo>${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c')}</script>`;
 }
@@ -139,6 +153,11 @@ function render(page, lang, source) {
       const text = need(key);
       return unescape(old) === text ? all : open + escapeText(text) + close;
     })
+    .replace(/(<([a-z0-9]+)\b[^<>]*?\sdata-i18n-optional="([^"]+)"[^<>]*>)[^<]*(<\/\2>)/g, (all, open, tag, key, close) => {
+      const text = words(page, lang, key).trim();
+      const visible = open.replace(/ hidden(?=[\s>])/, '');
+      return (text ? visible : visible.replace(/>$/, ' hidden>')) + escapeText(text) + close;
+    })
     .replace(/<a\b[^<>]*\sdata-adults-link="(short|full)"[^<>]*>\s*<span data-adults-label>[^<]*<\/span>/g, (all, kind) => all.replace(/(<span data-adults-label>)[^<]*/, '$1' + escapeText(ADULTS[lang][kind])))
     .replace(/(<span data-rx-label>)[^<]*/g, '$1' + escapeText(RX[lang]))
     .replace(/<[a-z0-9]+\b[^<>]*\sdata-i18n-(?:alt|aria)="[^"]+"[^<>]*>/g, tag => {
@@ -168,8 +187,9 @@ function render(page, lang, source) {
   html = setOne(html, /(<meta name="description" content=")[^"]*(">)/, (all, a, b) => a + escapeAttr(description) + b, 'meta description', file);
   html = setOne(html, /(<meta property="og:title" content=")[^"]*(">)/, (all, a, b) => a + escapeAttr(title) + b, 'og:title', file);
   html = setOne(html, /(<meta property="og:description" content=")[^"]*(">)/, (all, a, b) => a + escapeAttr(description) + b, 'og:description', file);
+  if (page === 'doctors') html = setOne(html, /(<meta property="og:image" content=")[^"]*(">)/, (all, a, b) => a + ORIGIN + '/assets/doctor.jpg' + b, 'og:image', file);
   html = setOne(html, BOOT_PATTERN, () => BOOT, 'language script', file);
-  html = html.replace(/(\/(?:site-text|app|track)\.js\?v=)[^"]+/g, '$1' + VERSION);
+  html = html.replace(/(\/(?:(?:site-text|app|track)\.js|brand\.css)\?v=)[^"]+/g, '$1' + VERSION);
   html = html.replace(/<link rel="alternate" hreflang="[^"]*" href="[^"]*">/g, '').replace(/<meta property="og:locale(?::alternate)?" content="[^"]*">/g, '').replace(/<script type="application\/ld\+json" data-seo>[\s\S]*?<\/script>/g, '');
   html = html.replace(/<meta name="google-site-verification" content="[^"]*">/g, '');
   if (VERIFICATION) html = setOne(html, /<meta name="description"/, `<meta name="google-site-verification" content="${escapeAttr(VERIFICATION)}"><meta name="description"`, 'google verification', file);
