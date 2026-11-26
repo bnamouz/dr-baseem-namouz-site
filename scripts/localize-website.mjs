@@ -117,8 +117,8 @@ function structuredData(page, lang, title) {
       graph.unshift({
         '@type': 'Physician', '@id': pageUrl(page, 'ar') + '#physician', name: FACTS.doctor[lang],
         url: pageUrl(page, lang), image: clinic.image, medicalSpecialty: clinic.medicalSpecialty,
-        knowsAbout: [words(page, lang, 'adhd.loc_title'), words(page, lang, 'doc.area3_title')],
-        worksFor: organization, parentOrganization: organization,
+        knowsAbout: [words(page, lang, 'doc.area1_title'), words(page, lang, 'doc.area2_title'), words(page, lang, 'doc.area3_title')],
+        parentOrganization: organization,
         telephone: institute.telephone, address: institute.address,
         availableLanguage: ['Arabic', 'Hebrew'],
       });

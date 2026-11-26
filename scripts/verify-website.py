@@ -80,7 +80,7 @@ for page in local:
             physician, institute = entities['Physician'], entities['MedicalClinic']
             assert physician['url'] == public_url(lang, page), (name, 'physician URL')
             assert physician['address'] == institute['address'] and physician['telephone'] == institute['telephone'], (name, 'institute address/phone')
-            assert physician['worksFor'] == physician['parentOrganization'] == {'@id': institute['@id']}, (name, 'institute reference')
+            assert 'worksFor' not in physician and physician['parentOrganization'] == {'@id': institute['@id']}, (name, 'institute reference')
             assert physician['availableLanguage'] == ['Arabic', 'Hebrew'], (name, 'consultation languages')
             questions = entities['FAQPage']['mainEntity']
             assert len(questions) == 6, (name, 'profile FAQ count')
