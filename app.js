@@ -22,6 +22,7 @@
     language=lang;root.lang=lang;root.dir=lang==='en'?'ltr':'rtl';
     try{localStorage.setItem('magic-language',lang);}catch(_){}
     document.querySelectorAll('[data-i18n]').forEach(el=>{const text=words(el.dataset.i18n);if(text)el.textContent=text;});
+    document.querySelectorAll('[data-i18n-optional]').forEach(el=>{const text=words(el.dataset.i18nOptional).trim();el.textContent=text;el.hidden=!text;});
     document.querySelectorAll('[data-i18n-alt]').forEach(el=>el.alt=words(el.dataset.i18nAlt));
     document.querySelectorAll('[data-i18n-aria]').forEach(el=>el.setAttribute('aria-label',words(el.dataset.i18nAria)));
     document.querySelectorAll('[data-lang-switch]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.langSwitch===lang)));

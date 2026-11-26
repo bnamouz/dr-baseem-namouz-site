@@ -1,5 +1,6 @@
 """Regression checks for the reported broken navigation and missing Arabic."""
 from pathlib import Path
+from html import unescape
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
 import json
@@ -72,6 +73,21 @@ for page in local:
         blocks = re.findall(r'<script type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S)
         assert blocks, (name, 'structured data')
         for block in blocks: json.loads(block)
+        if page == 'doctors.html':
+            graph = json.loads(blocks[0])['@graph']
+            entities = {item['@type']: item for item in graph}
+            assert {'Physician', 'FAQPage', 'BreadcrumbList'} <= entities.keys(), (name, 'profile structured data')
+            physician, institute = entities['Physician'], entities['MedicalClinic']
+            assert physician['url'] == public_url(lang, page), (name, 'physician URL')
+            assert physician['address'] == institute['address'] and physician['telephone'] == institute['telephone'], (name, 'institute address/phone')
+            assert physician['worksFor'] == physician['parentOrganization'] == {'@id': institute['@id']}, (name, 'institute reference')
+            assert physician['availableLanguage'] == ['Arabic', 'Hebrew'], (name, 'consultation languages')
+            questions = entities['FAQPage']['mainEntity']
+            assert len(questions) == 6, (name, 'profile FAQ count')
+            for i, item in enumerate(questions, 1):
+                for suffix, expected in [('q', item['name']), ('a', item['acceptedAnswer']['text'])]:
+                    match = re.search(fr'data-i18n="doc\.faq{i}_{suffix}"[^>]*>([^<]*)<', html)
+                    assert match and unescape(match[1]) == expected, (name, 'profile FAQ text', i, suffix)
 manifest = json.loads((root/'manifest.webmanifest').read_text())
 assert manifest['scope'] == '/' and manifest['start_url'] == '/index.html'
 assert {i['sizes'] for i in manifest['icons']} == {'192x192', '512x512'}

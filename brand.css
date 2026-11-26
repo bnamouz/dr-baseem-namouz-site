@@ -62,5 +62,31 @@ body[data-page="index"] main>.partner-strip:first-child{padding:22px 0 12px;back
 [data-package-price]{display:block;margin-top:.7rem;color:#075a5d;font-size:1rem}
 [data-private-quote]{margin-top:1.5rem}
 
+/* Keep the profile's full descriptive title readable beside and above the portrait. */
+body[data-page="doctors"] .page-hero h1{font-size:clamp(2rem,4vw,3.25rem);text-wrap:balance}
+[data-page="doctors"] .doc-facts{padding-block:clamp(24px,4vw,48px)}
+.doc-facts ul{list-style:none;margin:0;padding:0}
+.doc-facts .card{padding:clamp(14px,2vw,24px)}
+.doc-facts strong{display:block;font-size:1.1rem;line-height:1.5}
+[data-page="doctors"] #faq .card h3,[data-page="doctors"] #practice .card h3{margin-top:0}
+[data-page="adhd"] #steps .card .actions{margin-top:.75rem}
+[data-page="adhd"] #steps .card .text-link{margin-top:0}
+/* Leave the shared fixed install/YouTube controls clear of the LTR profile copy. */
+@media(min-width:981px){
+  html[lang="en"] [data-page="doctors"] .page-hero .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,350px);gap:clamp(24px,3.7vw,48px)}
+  html[lang="en"] [data-page="doctors"] .page-hero .hero-grid>div{padding-inline-start:clamp(175px,15.3vw,196px)}
+  html[dir="rtl"] [data-page="doctors"] .page-hero .portrait{justify-self:start}
+  html[dir="rtl"] [data-page="doctors"] .page-hero .portrait figcaption{justify-content:flex-start;column-gap:16px}
+}
+@media(max-width:680px){
+  html[lang="ar"] [data-page="doctors"] .page-hero{padding-block-start:30px}
+  html[lang="ar"] [data-page="doctors"] .page-hero .eyebrow{margin-bottom:8px}
+  html[lang="ar"] [data-page="doctors"] .page-hero h1{font-size:1.8rem;line-height:1.33}
+  html[lang="ar"] [data-page="doctors"] .page-hero .lead{margin-top:13px;line-height:1.72}
+  html[lang="ar"] [data-page="doctors"] .page-hero .actions{margin-top:20px}
+  html[lang="ar"] [data-page="doctors"] .page-hero .actions .button:not(.outline){max-inline-size:170px;min-height:48px;padding:8px 10px;gap:6px;font-size:.94rem;line-height:1.45}
+  .doc-facts .four{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+}
+
 /* Primary appointment choices share one row on wide screens. */
 .booking-dialog{width:min(900px,calc(100% - 32px))}.booking-primary-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.booking-primary-row .button{height:100%}@media(max-width:680px){.booking-primary-row{grid-template-columns:1fr}}
