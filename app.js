@@ -1,13 +1,22 @@
 (function () {
   'use strict';
   // A previously cached HTML page may request this script after a publication.
+  if(window.magicRedirecting)return; // the head script is already moving to this page in another language
   if(!document.body.dataset.page){const fresh=new URL(location.href);if(fresh.searchParams.get('site-version')!=='20260912-passportcard-1'){fresh.searchParams.set('site-version','20260912-passportcard-1');location.replace(fresh.href);}return;}
   const root=document.documentElement, translations=window.MAGIC_TRANSLATIONS||{};
   let language=window.magicLanguage||'ar';
   const words=key=>translations[language]?.[key]||'';
+  // Pages with their own /he/ and /en/ address. Keep in sync with LOCALIZED in scripts/localize-website.mjs.
+  const LOCAL_PAGES=new Set(['index','adhd','child-development','moxo-home','private-care','treatments','about','activities','recruit','booking','contact','workshop-register','doctors','app','privacy','terms','accessibility']);
+  function localPath(pathname,lang){const m=/^\/(?:(?:he|en)\/)?(?:([a-z-]+)\.html)?$/.exec(pathname);if(!m||!LOCAL_PAGES.has(m[1]||'index'))return null;return (lang==='ar'?'/':'/'+lang+'/')+(m[1]?m[1]+'.html':'');}
   let installPrompt=null,installed=window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
   function updateInstallLabel(){document.querySelectorAll('[data-install]').forEach(b=>{b.disabled=installed;b.querySelector('[data-i18n]').textContent=words(installed?'u.installed':'u.install');});}
-  function languageLinks(){document.querySelectorAll('a[href]').forEach(a=>{if(a.hasAttribute('data-preserve-language'))return;const u=new URL(a.getAttribute('href'),location.href);if((u.origin===location.origin&&/\.html$/.test(u.pathname))||u.origin==='https://magic-kids-hub.baseem-n.chatgpt.site'||(['https://app.magickidsinstitute.com','https://magickids-panel.vercel.app'].includes(u.origin)&&(u.pathname.startsWith('/book/')||u.pathname==='/onboarding/public'||u.pathname==='/moxo'||u.pathname==='/treatments'))){u.searchParams.set('lang',language);a.href=u.origin===location.origin?u.pathname+u.search+u.hash:u.href;}});}
+  function languageLinks(){document.querySelectorAll('a[href]').forEach(a=>{if(a.hasAttribute('data-preserve-language'))return;const u=new URL(a.getAttribute('href'),location.href);
+    if(u.origin===location.origin){const local=localPath(u.pathname,language);
+      if(local){u.searchParams.delete('lang');a.href=local+u.search+u.hash;}
+      else if(/\.html$/.test(u.pathname)){u.searchParams.set('lang',language);a.href=u.pathname+u.search+u.hash;}
+      return;}
+    if(u.origin==='https://magic-kids-hub.baseem-n.chatgpt.site'||(['https://app.magickidsinstitute.com','https://magickids-panel.vercel.app'].includes(u.origin)&&(u.pathname.startsWith('/book/')||u.pathname==='/onboarding/public'||u.pathname==='/moxo'||u.pathname==='/treatments'))){u.searchParams.set('lang',language);a.href=u.href;}});}
   function applyLanguage(lang){
     if(!translations[lang])return;
     language=lang;root.lang=lang;root.dir=lang==='en'?'ltr':'rtl';
@@ -16,14 +25,16 @@
     document.querySelectorAll('[data-i18n-alt]').forEach(el=>el.alt=words(el.dataset.i18nAlt));
     document.querySelectorAll('[data-i18n-aria]').forEach(el=>el.setAttribute('aria-label',words(el.dataset.i18nAria)));
     document.querySelectorAll('[data-lang-switch]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.langSwitch===lang)));
-    document.title=words(document.body.dataset.titleKey)+' | Magic Kids Institute';
+    document.title=words(document.body.dataset.titleKey)+(document.body.hasAttribute('data-title-full')?'':' | '+words('header.logo_name'));
     const desc=words(document.body.dataset.descriptionKey);
     document.querySelector('meta[name="description"]')?.setAttribute('content',desc);
     document.querySelector('meta[property="og:title"]')?.setAttribute('content',document.title);
     document.querySelector('meta[property="og:description"]')?.setAttribute('content',desc);
     document.querySelectorAll('.form-status').forEach(s=>{if(s.dataset.messageKey)s.textContent=words(s.dataset.messageKey);});
-    languageLinks();const current=new URL(location.href);current.searchParams.set('lang',lang);
-    try{history.replaceState(null,'',current.pathname+current.search+current.hash);}catch(_){}
+    languageLinks();const current=new URL(location.href),local=localPath(current.pathname,lang);
+    // Each language has its own address; the address bar follows the language without reloading.
+    if(local)current.searchParams.delete('lang');else current.searchParams.set('lang',lang);
+    try{history.replaceState(null,'',(local||current.pathname)+current.search+current.hash);}catch(_){}
     document.dispatchEvent(new CustomEvent('magic-language',{detail:{lang}}));updateInstallLabel();
   }
   document.querySelectorAll('[data-lang-switch]').forEach(b=>b.addEventListener('click',()=>applyLanguage(b.dataset.langSwitch)));

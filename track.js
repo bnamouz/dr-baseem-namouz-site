@@ -3,6 +3,7 @@
 (function(){
  try{
   if(navigator.webdriver)return;
+  if(window.magicRedirecting)return; // this visit is counted on the language page it is moving to
   var EP='https://app.magickidsinstitute.com/api/track';
   function rand(){var a=new Uint8Array(12);crypto.getRandomValues(a);var s='';for(var i=0;i<a.length;i++)s+=(a[i]%36).toString(36);return s;}
   function id(store,key){try{var v=store.getItem(key);if(!v){v=rand();store.setItem(key,v);}return v;}catch(e){return rand();}}
