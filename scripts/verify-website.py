@@ -57,6 +57,8 @@ sitemap = (root/'sitemap.xml').read_text()
 locs = re.findall(r'<loc>([^<]+)</loc>', sitemap)
 assert len(locs) == len(set(locs)) == len(local) * 3, ('sitemap size', len(locs))
 assert 'Sitemap: ' + site + '/sitemap.xml' in (root/'robots.txt').read_text(), 'robots.txt sitemap'
+area_pages = {'index.html', 'adhd.html', 'doctors.html'}
+areas_by_language = {}
 for page in local:
     for lang in ('ar', 'he', 'en'):
         name = page if lang == 'ar' else f'{lang}/{page}'
@@ -72,22 +74,36 @@ for page in local:
         if lang != 'he': assert not re.search(r'[\u0590-\u05ff]', title.group(1) + desc.group(1)), (name, 'Hebrew in title/description')
         blocks = re.findall(r'<script type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S)
         assert blocks, (name, 'structured data')
-        for block in blocks: json.loads(block)
+        graphs = [json.loads(block) for block in blocks]
+        if page in area_pages:
+            entities = {item['@type']: item for item in graphs[0]['@graph']}
+            institute = entities['MedicalClinic']
+            areas = institute['areaServed']
+            assert [area['@type'] for area in areas] == ['City'] * 14 + ['AdministrativeArea'] * 2, (name, 'area types')
+            assert len({area['name'] for area in areas if area['name']}) == 16, (name, 'unique area names')
+            assert areas_by_language.setdefault(lang, areas) == areas, (name, 'consistent institute area')
+            assert re.search(fr'<loc>{re.escape(public_url(lang, page))}</loc><lastmod>\d{{4}}-\d{{2}}-\d{{2}}</lastmod>', sitemap), (name, 'sitemap lastmod')
+            if page == 'index.html':
+                assert 'areaServed' not in entities['Physician'], (name, 'unrelated pediatric clinic area')
+        if page in {'adhd.html', 'doctors.html'}:
+            assert len(unescape(title[1])) <= 60 and len(unescape(desc[1])) <= 160, (name, 'metadata length')
+            assert re.search(r'<p data-i18n="adhd\.loc_text">[^<]*</p>\s*<p data-i18n="adhd\.reach_text">', html), (name, 'service area after location text')
+            questions = entities['FAQPage']['mainEntity']
+            prefix, original_count = ('doc', 6) if page == 'doctors.html' else ('adhd', 7)
+            assert len(questions) == original_count + 1, (name, 'FAQ count')
+            faq_keys = [f'{prefix}.faq{i}' for i in range(1, original_count + 1)] + ['adhd.reach']
+            for key, item in zip(faq_keys, questions):
+                for suffix, expected in [('q', item['name']), ('a', item['acceptedAnswer']['text'])]:
+                    match = re.search(fr'data-i18n="{re.escape(key)}_{suffix}"[^>]*>([^<]*)<', html)
+                    assert match and unescape(match[1]) == expected, (name, 'FAQ text', key, suffix)
         if page == 'doctors.html':
-            graph = json.loads(blocks[0])['@graph']
-            entities = {item['@type']: item for item in graph}
             assert {'Physician', 'FAQPage', 'BreadcrumbList'} <= entities.keys(), (name, 'profile structured data')
-            physician, institute = entities['Physician'], entities['MedicalClinic']
+            physician = entities['Physician']
             assert physician['url'] == public_url(lang, page), (name, 'physician URL')
             assert physician['address'] == institute['address'] and physician['telephone'] == institute['telephone'], (name, 'institute address/phone')
             assert 'worksFor' not in physician and physician['parentOrganization'] == {'@id': institute['@id']}, (name, 'institute reference')
             assert physician['availableLanguage'] == ['Arabic', 'Hebrew'], (name, 'consultation languages')
-            questions = entities['FAQPage']['mainEntity']
-            assert len(questions) == 6, (name, 'profile FAQ count')
-            for i, item in enumerate(questions, 1):
-                for suffix, expected in [('q', item['name']), ('a', item['acceptedAnswer']['text'])]:
-                    match = re.search(fr'data-i18n="doc\.faq{i}_{suffix}"[^>]*>([^<]*)<', html)
-                    assert match and unescape(match[1]) == expected, (name, 'profile FAQ text', i, suffix)
+            assert physician['areaServed'] == areas, (name, 'physician area')
 manifest = json.loads((root/'manifest.webmanifest').read_text())
 assert manifest['scope'] == '/' and manifest['start_url'] == '/index.html'
 assert {i['sizes'] for i in manifest['icons']} == {'192x192', '512x512'}

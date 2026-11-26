@@ -19,13 +19,15 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://magickidsinstitute.com';
-const VERSION = '20261126-doctor-profile';
+const VERSION = '20261127-wider-area';
 const CHECK = process.argv.includes('--check');
 // Pages that get their own /he/ and /en/ address. Keep in sync with LOCAL_PAGES in app.js.
 const LOCALIZED = ['index', 'adhd', 'child-development', 'moxo-home', 'private-care', 'treatments', 'about', 'activities', 'recruit', 'booking', 'contact', 'workshop-register', 'doctors', 'app', 'privacy', 'terms', 'accessibility'];
 // Utility pages: one address, language switched in place by app.js.
 const IN_PLACE = ['404', 'offline', 'clinicflow'];
 const LANGS = ['ar', 'he', 'en'];
+// Pages with substantial content or structured-data changes, not just a shared asset version bump.
+const LAST_MODIFIED = { index: '2026-11-27', adhd: '2026-11-27', doctors: '2026-11-27' };
 const OG_LOCALE = { ar: 'ar_AR', he: 'he_IL', en: 'en_US' };
 const fail = message => { console.error('FAIL: ' + message); process.exit(1); };
 const read = file => fs.readFileSync(path.join(ROOT, file), 'utf8');
@@ -82,14 +84,40 @@ const FACTS = {
   instituteStreet: { he: 'דאהר עומר אלזידאני 9', ar: 'ظاهر عمر الزيداني 9', en: '9 Daher Omar Al-Zaydani St.' },
   clinicStreet: { he: 'תופיק זיאד 21', ar: 'توفيق زياد 21', en: '21 Tawfiq Ziad St.' },
 };
+// Families travel from these areas for in-person visits at the institute's Shefa-Amr address.
+const INSTITUTE_AREAS = {
+  City: [
+    FACTS.city,
+    { he: 'חיפה', ar: 'حيفا', en: 'Haifa' },
+    { he: 'קריית אתא', ar: 'كريات آتا', en: 'Kiryat Ata' },
+    { he: 'קריית ביאליק', ar: 'كريات بياليك', en: 'Kiryat Bialik' },
+    { he: 'קריית מוצקין', ar: 'كريات موتسكين', en: 'Kiryat Motzkin' },
+    { he: 'קריית ים', ar: 'كريات يام', en: 'Kiryat Yam' },
+    { he: 'טמרה', ar: 'طمرة', en: 'Tamra' },
+    { he: 'כאבול', ar: 'كابول', en: 'Kabul' },
+    { he: 'אעבלין', ar: 'عبلين', en: "I'billin" },
+    { he: 'סכנין', ar: 'سخنين', en: 'Sakhnin' },
+    { he: 'נצרת', ar: 'الناصرة', en: 'Nazareth' },
+    { he: 'עכו', ar: 'عكا', en: 'Akko' },
+    { he: 'כרמיאל', ar: 'كرميئيل', en: 'Karmiel' },
+    { he: 'נהריה', ar: 'نهاريا', en: 'Nahariya' },
+  ],
+  AdministrativeArea: [
+    { he: 'מחוז הצפון', ar: 'اللواء الشمالي', en: 'Northern District' },
+    { he: 'מחוז חיפה', ar: 'لواء حيفا', en: 'Haifa District' },
+  ],
+};
 function structuredData(page, lang, title) {
   const address = street => ({ '@type': 'PostalAddress', streetAddress: FACTS[street][lang], addressLocality: FACTS.city[lang], addressCountry: 'IL' });
+  const areaServed = Object.entries(INSTITUTE_AREAS).flatMap(([type, places]) =>
+    places.map(place => ({ '@type': type, name: place[lang] })));
   const institute = {
     '@type': 'MedicalClinic', '@id': ORIGIN + '/#institute', name: FACTS.institute[lang],
     alternateName: LANGS.filter(l => l !== lang).map(l => FACTS.institute[l]), url: pageUrl('index', lang),
     logo: ORIGIN + '/assets/institute-logo.jpg', image: ORIGIN + '/assets/institute-logo.jpg',
     telephone: '+972544020043', email: 'magickids@magickidsinstitute.com', address: address('instituteStreet'),
     hasMap: 'https://maps.app.goo.gl/MG3eHopWuLA4imPH8', sameAs: ['https://www.youtube.com/@magickids-q7b'],
+    ...(['index', 'adhd', 'doctors'].includes(page) ? { areaServed } : {}),
   };
   const clinic = {
     '@type': 'Physician', '@id': ORIGIN + '/#pediatric-clinic', name: FACTS.doctor[lang], description: FACTS.role[lang],
@@ -108,9 +136,11 @@ function structuredData(page, lang, title) {
   else if (page === 'adhd' || page === 'doctors') {
     const prefix = page === 'adhd' ? 'adhd' : 'doc';
     const questions = [];
+    const addFaq = key => questions.push({ '@type': 'Question', name: T[lang][`${key}_q`], acceptedAnswer: { '@type': 'Answer', text: T[lang][`${key}_a`] } });
     for (let i = 1; T[lang][`${prefix}.faq${i}_q`]; i++) {
-      questions.push({ '@type': 'Question', name: T[lang][`${prefix}.faq${i}_q`], acceptedAnswer: { '@type': 'Answer', text: T[lang][`${prefix}.faq${i}_a`] } });
+      addFaq(`${prefix}.faq${i}`);
     }
+    addFaq('adhd.reach');
     graph = [{ '@type': 'FAQPage', url: pageUrl(page, lang), inLanguage: lang, mainEntity: questions }, institute, crumbs];
     if (page === 'doctors') {
       const organization = { '@id': institute['@id'] };
@@ -119,7 +149,7 @@ function structuredData(page, lang, title) {
         url: pageUrl(page, lang), image: clinic.image, medicalSpecialty: clinic.medicalSpecialty,
         knowsAbout: [words(page, lang, 'doc.area1_title'), words(page, lang, 'doc.area2_title'), words(page, lang, 'doc.area3_title')],
         parentOrganization: organization,
-        telephone: institute.telephone, address: institute.address,
+        telephone: institute.telephone, address: institute.address, areaServed,
         availableLanguage: ['Arabic', 'Hebrew'],
       });
     }
@@ -212,6 +242,7 @@ for (const page of [...LOCALIZED, ...IN_PLACE]) {
 }
 outputs.set('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
   + LOCALIZED.flatMap(page => LANGS.map(lang => `<url><loc>${pageUrl(page, lang)}</loc>`
+    + (LAST_MODIFIED[page] ? `<lastmod>${LAST_MODIFIED[page]}</lastmod>` : '')
     + [...LANGS.map(l => [l, pageUrl(page, l)]), ['x-default', pageUrl(page, 'ar')]].map(([code, href]) => `<xhtml:link rel="alternate" hreflang="${code}" href="${href}"/>`).join('') + '</url>')).join('\n')
   + '\n</urlset>\n');
 
