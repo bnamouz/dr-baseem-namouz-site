@@ -2,7 +2,7 @@
 from pathlib import Path
 from html import unescape
 from html.parser import HTMLParser
-from urllib.parse import urlsplit, unquote
+from urllib.parse import urljoin, urlsplit, unquote
 import json
 import re
 import subprocess
@@ -113,7 +113,15 @@ for page in local:
         if page == 'who-can-diagnose-adhd.html':
             entities = {item['@type']: item for item in graphs[0]['@graph']}
             article = entities['Article']
-            assert article['author']['@id'] == entities['Physician']['@id'] == site + '/doctors.html#physician', (name, 'article author')
+            doctor_file = 'doctors.html' if lang == 'ar' else f'{lang}/doctors.html'
+            doctor_html = (root/doctor_file).read_text()
+            doctor_graph = json.loads(re.search(r'<script type="application/ld\+json" data-seo>(.*?)</script>', doctor_html, re.S)[1])['@graph']
+            doctor = next(item for item in doctor_graph if item['@type'] == 'Physician')
+            assert article['author'] == {key: doctor[key] for key in ('@type', '@id', 'name', 'url')}, (name, 'article author')
+            assert 'Physician' not in entities and '"knowsAbout"' not in blocks[0], (name, 'duplicate physician node')
+            image = re.search(r'<meta property="og:image" content="([^"]+)">', html)
+            if image: assert article['image'] == urljoin(site, unescape(image[1])), (name, 'article image')
+            assert article['description'] == unescape(desc[1]), (name, 'article description')
             assert article['publisher']['@id'] == entities['MedicalClinic']['@id'] == site + '/#institute', (name, 'article publisher')
             assert article['inLanguage'] == lang and article['url'] == public_url(lang, page), (name, 'article language/URL')
             assert article['datePublished'] == '2026-11-27' and article['dateModified'] == '2026-11-27', (name, 'article dates')

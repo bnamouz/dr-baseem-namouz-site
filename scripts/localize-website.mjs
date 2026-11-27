@@ -132,7 +132,7 @@ const INSTITUTE_AREAS = {
     { he: 'מחוז חיפה', ar: 'لواء حيفا', en: 'Haifa District' },
   ],
 };
-function structuredData(page, lang, title) {
+function structuredData(page, lang, title, image) {
   const address = street => ({ '@type': 'PostalAddress', streetAddress: FACTS[street][lang], addressLocality: FACTS.city[lang], addressCountry: 'IL' });
   const areaServed = Object.entries(INSTITUTE_AREAS).flatMap(([type, places]) =>
     places.map(place => ({ '@type': type, name: place[lang] })));
@@ -150,8 +150,9 @@ function structuredData(page, lang, title) {
     telephone: '+97248717911', address: address('clinicStreet'),
     openingHoursSpecification: HOURS.map(([day, opens, closes]) => ({ '@type': 'OpeningHoursSpecification', dayOfWeek: 'https://schema.org/' + day, opens, closes })),
   };
+  const physicianId = pageUrl('doctors', 'ar') + '#physician';
   const profile = () => ({
-    '@type': 'Physician', '@id': pageUrl('doctors', 'ar') + '#physician', name: FACTS.doctor[lang],
+    '@type': 'Physician', '@id': physicianId, name: FACTS.doctor[lang],
     url: pageUrl('doctors', lang), image: clinic.image, medicalSpecialty: clinic.medicalSpecialty,
     knowsAbout: [words(page, lang, 'doc.area1_title'), words(page, lang, 'doc.area2_title'), words(page, lang, 'doc.area3_title')],
     parentOrganization: { '@id': institute['@id'] },
@@ -179,19 +180,20 @@ function structuredData(page, lang, title) {
     graph = [faq(questions), institute, crumbs];
     if (page === 'doctors') graph.unshift(profile());
   } else if (page === ARTICLE) {
-    const author = profile();
     const url = pageUrl(page, lang);
     const article = {
       '@type': 'Article', '@id': url + '#article', url, mainEntityOfPage: url,
       headline: words(page, lang, 'diagnose.h1'), description: words(page, lang, 'diagnose.page_desc'),
       inLanguage: lang, datePublished: '2026-11-27', dateModified: LAST_MODIFIED[page],
-      author: { '@id': author['@id'] }, publisher: { '@id': institute['@id'] },
+      author: { '@type': 'Physician', '@id': physicianId, name: FACTS.doctor[lang], url: pageUrl('doctors', lang) },
+      publisher: { '@id': institute['@id'] },
+      ...(image ? { image: new URL(image, ORIGIN).href } : {}),
     };
     const questions = [1, 2, 3, 4].map(i => question(
       words(page, lang, `diagnose.faq${i}_q`),
       articleInline(words(page, lang, `diagnose.faq${i}_a`), true),
     ));
-    graph = [article, author, institute, crumbs, faq(questions)];
+    graph = [article, institute, crumbs, faq(questions)];
   } else graph = [crumbs];
   return `<script type="application/ld+json" data-seo>${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c')}</script>`;
 }
@@ -273,7 +275,8 @@ function render(page, lang, source) {
     const alternates = [...LANGS.map(l => [l, pageUrl(page, l)]), ['x-default', pageUrl(page, 'ar')]].map(([code, href]) => `<link rel="alternate" hreflang="${code}" href="${href}">`).join('');
     html = setOne(html, /<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${url}">` + alternates, 'canonical', file);
     html = setOne(html, /<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${url}"><meta property="og:locale" content="${OG_LOCALE[lang]}">` + LANGS.filter(l => l !== lang).map(l => `<meta property="og:locale:alternate" content="${OG_LOCALE[l]}">`).join(''), 'og:url', file);
-    html = setOne(html, /<\/head>/, () => structuredData(page, lang, title) + '</head>', '</head>', file);
+    const image = page === ARTICLE ? /<meta property="og:image" content="([^"]+)">/.exec(html)?.[1] : null;
+    html = setOne(html, /<\/head>/, () => structuredData(page, lang, title, image && unescape(image)) + '</head>', '</head>', file);
   }
   return html;
 }
