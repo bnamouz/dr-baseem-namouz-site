@@ -12,6 +12,7 @@ class Page(HTMLParser):
     def __init__(self):
         super().__init__()
         self.ids, self.links, self.scripts, self.assets, self.keys = [], [], [], [], []
+        self.inline_keys = set()
         self.h1 = 0
     def handle_starttag(self, tag, attrs):
         d = dict(attrs)
@@ -21,8 +22,9 @@ class Page(HTMLParser):
         if tag == 'script' and d.get('src'): self.scripts.append(d['src'])
         if tag == 'img' and d.get('src'): self.assets.append(d['src'])
         if tag == 'link' and d.get('rel') in ('stylesheet', 'manifest', 'icon', 'apple-touch-icon'): self.assets.append(d['href'])
-        for attr in ('data-i18n', 'data-i18n-alt', 'data-i18n-aria', 'data-title-key', 'data-description-key'):
+        for attr in ('data-i18n', 'data-i18n-inline', 'data-i18n-alt', 'data-i18n-aria', 'data-title-key', 'data-description-key'):
             if d.get(attr): self.keys.append(d[attr])
+        if d.get('data-i18n-inline'): self.inline_keys.add(d['data-i18n-inline'])
 
 pages = {}
 for f in [*root.glob('*.html'), *root.glob('he/*.html'), *root.glob('en/*.html')]:
@@ -36,7 +38,11 @@ for name, p in pages.items():
     for key in p.keys:
         for lang in ('he', 'ar', 'en'):
             assert texts[lang].get(key), (name, lang, key)
-            if lang == 'ar': assert not re.search(r'[\u0590-\u05ff]', texts[lang][key]), (name, 'Hebrew inside Arabic', key)
+            if lang == 'ar':
+                copy = texts[lang][key]
+                if key in p.inline_keys:  # Official Hebrew-language sources can have Hebrew URL paths.
+                    copy = re.sub(r'(?<=\]\()https://[^()\s]+(?=\))', '', copy)
+                assert not re.search(r'[\u0590-\u05ff]', copy), (name, 'Hebrew inside Arabic', key)
     for ref in p.links + p.assets + p.scripts:
         u = urlsplit(ref)
         if u.scheme or u.netloc: continue
@@ -104,6 +110,25 @@ for page in local:
             assert 'worksFor' not in physician and physician['parentOrganization'] == {'@id': institute['@id']}, (name, 'institute reference')
             assert physician['availableLanguage'] == ['Arabic', 'Hebrew'], (name, 'consultation languages')
             assert physician['areaServed'] == areas, (name, 'physician area')
+        if page == 'who-can-diagnose-adhd.html':
+            entities = {item['@type']: item for item in graphs[0]['@graph']}
+            article = entities['Article']
+            assert article['author']['@id'] == entities['Physician']['@id'] == site + '/doctors.html#physician', (name, 'article author')
+            assert article['publisher']['@id'] == entities['MedicalClinic']['@id'] == site + '/#institute', (name, 'article publisher')
+            assert article['inLanguage'] == lang and article['url'] == public_url(lang, page), (name, 'article language/URL')
+            assert article['datePublished'] == '2026-11-27' and article['dateModified'] == '2026-11-27', (name, 'article dates')
+            assert f'<loc>{public_url(lang, page)}</loc><lastmod>{article["dateModified"]}</lastmod>' in sitemap, (name, 'article sitemap lastmod')
+            assert article['headline'] == unescape(re.search(r'<h1 data-i18n="diagnose\.h1">([^<]+)</h1>', html)[1]), (name, 'article headline')
+            assert entities['BreadcrumbList']['itemListElement'][-1]['item'] == article['url'], (name, 'article breadcrumb')
+            assert 'noindex' not in html.lower() and 'aggregateRating' not in blocks[0] and '"review"' not in blocks[0], (name, 'article search policy')
+            questions = entities['FAQPage']['mainEntity']
+            assert len(questions) == 4, (name, 'article FAQ count')
+            for i, item in enumerate(questions, 1):
+                question = re.search(fr'data-i18n="diagnose\.faq{i}_q">([^<]+)</h3>', html)
+                answer = re.search(fr'data-i18n-inline="diagnose\.faq{i}_a">(.*?)</p>', html, re.S)
+                assert question and answer, (name, 'article FAQ markup')
+                assert unescape(question[1]) == item['name'], (name, 'article FAQ question', i)
+                assert unescape(re.sub(r'<[^>]+>', '', answer[1])) == item['acceptedAnswer']['text'], (name, 'article FAQ answer', i)
 manifest = json.loads((root/'manifest.webmanifest').read_text())
 assert manifest['scope'] == '/' and manifest['start_url'] == '/index.html'
 assert {i['sizes'] for i in manifest['icons']} == {'192x192', '512x512'}

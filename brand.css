@@ -88,5 +88,29 @@ body[data-page="doctors"] .page-hero h1{font-size:clamp(2rem,4vw,3.25rem);text-w
   .doc-facts .four{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 }
 
+/* Editorial reading column; preserve site typography, color and mobile gutters. */
+.diagnosis-article{max-inline-size:58ch;padding-block:clamp(38px,6vw,76px);font-size:clamp(1.05rem,1.1vw + .35rem,1.125rem);line-height:1.8;overflow-wrap:break-word}
+.diagnosis-article h1,html[lang="ar"] .diagnosis-article h1{font-size:clamp(1.9rem,4vw,3.05rem);line-height:1.29;text-wrap:balance}
+.diagnosis-byline,.diagnosis-note{color:var(--muted);font-size:.92em}
+.diagnosis-byline{margin-block-start:.65rem}
+.diagnosis-summary{margin-block-start:1.5rem;padding:clamp(16px,3vw,28px);border-inline-start:4px solid var(--teal);border-radius:12px;background:var(--mint)}
+.diagnosis-article section{margin-block-start:clamp(28px,4.5vw,50px)}
+.diagnosis-article h2{font-size:clamp(1.42rem,2.1vw,1.75rem);margin-block-end:.55em}
+.diagnosis-article h3{font-size:1.1em;margin-block-end:.35em}
+.diagnosis-article ul,.diagnosis-article ol{margin-block:.65em 0;padding-inline-start:1.4em}
+.diagnosis-article li+li{margin-block-start:.45em}
+.diagnosis-article :is(ul,ol)+p{margin-block-start:1.1em}
+.diagnosis-article a,.diagnosis-related a{color:var(--teal);text-decoration:underline;text-underline-offset:.18em}
+.diagnosis-faq>div+div{margin-block-start:1.1em;padding-block-start:1.1em;border-block-start:1px solid var(--line)}
+.diagnosis-note{margin-block-start:1.7em;font-style:italic}
+.diagnosis-related{margin-block-start:1.25rem}
+@media(max-width:1020px){
+  [data-page="who-can-diagnose-adhd"] :is(.youtube-side,.mk-install){position:relative;inset:auto;display:inline-flex;vertical-align:middle;margin-block:12px 24px;margin-inline:12px}
+}
+@media(max-width:680px){
+  [data-page="who-can-diagnose-adhd"]{padding-block-end:calc(72px + env(safe-area-inset-bottom))}
+  [data-page="who-can-diagnose-adhd"] .site-footer{padding-block-end:24px}
+}
+
 /* Primary appointment choices share one row on wide screens. */
 .booking-dialog{width:min(900px,calc(100% - 32px))}.booking-primary-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.booking-primary-row .button{height:100%}@media(max-width:680px){.booking-primary-row{grid-template-columns:1fr}}
