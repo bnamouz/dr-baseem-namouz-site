@@ -19,15 +19,16 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://magickidsinstitute.com';
-const VERSION = '20261127-wider-area';
+const VERSION = '20261127-who-can-diagnose';
+const ARTICLE = 'who-can-diagnose-adhd';
 const CHECK = process.argv.includes('--check');
 // Pages that get their own /he/ and /en/ address. Keep in sync with LOCAL_PAGES in app.js.
-const LOCALIZED = ['index', 'adhd', 'child-development', 'moxo-home', 'private-care', 'treatments', 'about', 'activities', 'recruit', 'booking', 'contact', 'workshop-register', 'doctors', 'app', 'privacy', 'terms', 'accessibility'];
+const LOCALIZED = ['index', 'adhd', 'child-development', 'moxo-home', 'private-care', 'treatments', 'about', 'activities', 'recruit', 'booking', 'contact', 'workshop-register', 'doctors', ARTICLE, 'app', 'privacy', 'terms', 'accessibility'];
 // Utility pages: one address, language switched in place by app.js.
 const IN_PLACE = ['404', 'offline', 'clinicflow'];
 const LANGS = ['ar', 'he', 'en'];
 // Pages with substantial content or structured-data changes, not just a shared asset version bump.
-const LAST_MODIFIED = { index: '2026-11-27', adhd: '2026-11-27', doctors: '2026-11-27' };
+const LAST_MODIFIED = { index: '2026-11-27', adhd: '2026-11-27', doctors: '2026-11-27', [ARTICLE]: '2026-11-27' };
 const OG_LOCALE = { ar: 'ar_AR', he: 'he_IL', en: 'en_US' };
 const fail = message => { console.error('FAIL: ' + message); process.exit(1); };
 const read = file => fs.readFileSync(path.join(ROOT, file), 'utf8');
@@ -63,6 +64,30 @@ const unescape = s => s.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (all, code) => 
   : (NAMED[code.toLowerCase()] ?? all));
 
 const pageUrl = (page, lang) => ORIGIN + (lang === 'ar' ? '/' : `/${lang}/`) + (page === 'index' ? '' : page + '.html');
+
+// Only bold and links are allowed in inline article copy; no raw HTML is passed through.
+function articleInline(copy, plain = false) {
+  const pattern = /(\*\*([^*]+)\*\*)|\[([^\]]+)\]\((https:\/\/[^()\s]+)\)/g;
+  const text = plain ? value => value : escapeText;
+  let result = '', offset = 0;
+  for (const match of copy.matchAll(pattern)) {
+    const [, , bold, label, href] = match;
+    result += text(copy.slice(offset, match.index));
+    if (bold) {
+      const content = articleInline(bold, plain);
+      result += plain ? content : `<strong>${content}</strong>`;
+    } else if (plain) {
+      result += label;
+    } else {
+      const url = new URL(href);
+      const internal = url.origin === ORIGIN;
+      const target = internal ? url.pathname.replace(/^\/(?:he|en)(?=\/)/, '') + url.search + url.hash : href;
+      result += `<a href="${escapeAttr(target)}"${internal ? '' : ' target="_blank" rel="noopener"'}>${escapeText(label)}</a>`;
+    }
+    offset = match.index + match[0].length;
+  }
+  return result + text(copy.slice(offset));
+}
 
 /* Runs before anything is painted. Pages with language copies redirect to the copy that matches the
    requested (?lang=) or remembered language; utility pages only set the language for app.js. */
@@ -107,7 +132,7 @@ const INSTITUTE_AREAS = {
     { he: 'מחוז חיפה', ar: 'لواء حيفا', en: 'Haifa District' },
   ],
 };
-function structuredData(page, lang, title) {
+function structuredData(page, lang, title, image) {
   const address = street => ({ '@type': 'PostalAddress', streetAddress: FACTS[street][lang], addressLocality: FACTS.city[lang], addressCountry: 'IL' });
   const areaServed = Object.entries(INSTITUTE_AREAS).flatMap(([type, places]) =>
     places.map(place => ({ '@type': type, name: place[lang] })));
@@ -125,9 +150,20 @@ function structuredData(page, lang, title) {
     telephone: '+97248717911', address: address('clinicStreet'),
     openingHoursSpecification: HOURS.map(([day, opens, closes]) => ({ '@type': 'OpeningHoursSpecification', dayOfWeek: 'https://schema.org/' + day, opens, closes })),
   };
+  const physicianId = pageUrl('doctors', 'ar') + '#physician';
+  const profile = () => ({
+    '@type': 'Physician', '@id': physicianId, name: FACTS.doctor[lang],
+    url: pageUrl('doctors', lang), image: clinic.image, medicalSpecialty: clinic.medicalSpecialty,
+    knowsAbout: [words(page, lang, 'doc.area1_title'), words(page, lang, 'doc.area2_title'), words(page, lang, 'doc.area3_title')],
+    parentOrganization: { '@id': institute['@id'] },
+    telephone: institute.telephone, address: institute.address, areaServed,
+    availableLanguage: ['Arabic', 'Hebrew'],
+  });
+  const question = (name, text) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } });
+  const faq = mainEntity => ({ '@type': 'FAQPage', url: pageUrl(page, lang), inLanguage: lang, mainEntity });
   const crumbs = { '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: words(page, lang, 'nav.home'), item: pageUrl('index', lang) },
-    { '@type': 'ListItem', position: 2, name: title.split(' | ')[0], item: pageUrl(page, lang) },
+    { '@type': 'ListItem', position: 2, name: page === ARTICLE ? words(page, lang, 'diagnose.h1') : title.split(' | ')[0], item: pageUrl(page, lang) },
   ] };
   let graph;
   if (page === 'index') graph = [institute, clinic, { '@type': 'WebSite', '@id': ORIGIN + '/#website', url: ORIGIN + '/', name: FACTS.institute[lang], inLanguage: lang, publisher: { '@id': institute['@id'] } }];
@@ -136,23 +172,28 @@ function structuredData(page, lang, title) {
   else if (page === 'adhd' || page === 'doctors') {
     const prefix = page === 'adhd' ? 'adhd' : 'doc';
     const questions = [];
-    const addFaq = key => questions.push({ '@type': 'Question', name: T[lang][`${key}_q`], acceptedAnswer: { '@type': 'Answer', text: T[lang][`${key}_a`] } });
+    const addFaq = key => questions.push(question(T[lang][`${key}_q`], T[lang][`${key}_a`]));
     for (let i = 1; T[lang][`${prefix}.faq${i}_q`]; i++) {
       addFaq(`${prefix}.faq${i}`);
     }
     addFaq('adhd.reach');
-    graph = [{ '@type': 'FAQPage', url: pageUrl(page, lang), inLanguage: lang, mainEntity: questions }, institute, crumbs];
-    if (page === 'doctors') {
-      const organization = { '@id': institute['@id'] };
-      graph.unshift({
-        '@type': 'Physician', '@id': pageUrl(page, 'ar') + '#physician', name: FACTS.doctor[lang],
-        url: pageUrl(page, lang), image: clinic.image, medicalSpecialty: clinic.medicalSpecialty,
-        knowsAbout: [words(page, lang, 'doc.area1_title'), words(page, lang, 'doc.area2_title'), words(page, lang, 'doc.area3_title')],
-        parentOrganization: organization,
-        telephone: institute.telephone, address: institute.address, areaServed,
-        availableLanguage: ['Arabic', 'Hebrew'],
-      });
-    }
+    graph = [faq(questions), institute, crumbs];
+    if (page === 'doctors') graph.unshift(profile());
+  } else if (page === ARTICLE) {
+    const url = pageUrl(page, lang);
+    const article = {
+      '@type': 'Article', '@id': url + '#article', url, mainEntityOfPage: url,
+      headline: words(page, lang, 'diagnose.h1'), description: words(page, lang, 'diagnose.page_desc'),
+      inLanguage: lang, datePublished: '2026-11-27', dateModified: LAST_MODIFIED[page],
+      author: { '@type': 'Physician', '@id': physicianId, name: FACTS.doctor[lang], url: pageUrl('doctors', lang) },
+      publisher: { '@id': institute['@id'] },
+      ...(image ? { image: new URL(image, ORIGIN).href } : {}),
+    };
+    const questions = [1, 2, 3, 4].map(i => question(
+      words(page, lang, `diagnose.faq${i}_q`),
+      articleInline(words(page, lang, `diagnose.faq${i}_a`), true),
+    ));
+    graph = [article, institute, crumbs, faq(questions)];
   } else graph = [crumbs];
   return `<script type="application/ld+json" data-seo>${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c')}</script>`;
 }
@@ -183,6 +224,8 @@ function render(page, lang, source) {
       const text = need(key);
       return unescape(old) === text ? all : open + escapeText(text) + close;
     })
+    .replace(/(<([a-z0-9]+)\b[^<>]*?\sdata-i18n-inline="([^"]+)"[^<>]*>)[\s\S]*?(<\/\2>)/g,
+      (all, open, tag, key, close) => open + articleInline(need(key)) + close)
     .replace(/(<([a-z0-9]+)\b[^<>]*?\sdata-i18n-optional="([^"]+)"[^<>]*>)[^<]*(<\/\2>)/g, (all, open, tag, key, close) => {
       const text = words(page, lang, key).trim();
       const visible = open.replace(/ hidden(?=[\s>])/, '');
@@ -217,6 +260,10 @@ function render(page, lang, source) {
   html = setOne(html, /(<meta name="description" content=")[^"]*(">)/, (all, a, b) => a + escapeAttr(description) + b, 'meta description', file);
   html = setOne(html, /(<meta property="og:title" content=")[^"]*(">)/, (all, a, b) => a + escapeAttr(title) + b, 'og:title', file);
   html = setOne(html, /(<meta property="og:description" content=")[^"]*(">)/, (all, a, b) => a + escapeAttr(description) + b, 'og:description', file);
+  if (page === ARTICLE) {
+    html = setOne(html, /(<meta name="twitter:title" content=")[^"]*(">)/, (all, a, b) => a + escapeAttr(title) + b, 'twitter:title', file);
+    html = setOne(html, /(<meta name="twitter:description" content=")[^"]*(">)/, (all, a, b) => a + escapeAttr(description) + b, 'twitter:description', file);
+  }
   if (page === 'doctors') html = setOne(html, /(<meta property="og:image" content=")[^"]*(">)/, (all, a, b) => a + ORIGIN + '/assets/doctor.jpg' + b, 'og:image', file);
   html = setOne(html, BOOT_PATTERN, () => BOOT, 'language script', file);
   html = html.replace(/(\/(?:(?:site-text|app|track)\.js|brand\.css)\?v=)[^"]+/g, '$1' + VERSION);
@@ -228,7 +275,8 @@ function render(page, lang, source) {
     const alternates = [...LANGS.map(l => [l, pageUrl(page, l)]), ['x-default', pageUrl(page, 'ar')]].map(([code, href]) => `<link rel="alternate" hreflang="${code}" href="${href}">`).join('');
     html = setOne(html, /<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${url}">` + alternates, 'canonical', file);
     html = setOne(html, /<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${url}"><meta property="og:locale" content="${OG_LOCALE[lang]}">` + LANGS.filter(l => l !== lang).map(l => `<meta property="og:locale:alternate" content="${OG_LOCALE[l]}">`).join(''), 'og:url', file);
-    html = setOne(html, /<\/head>/, () => structuredData(page, lang, title) + '</head>', '</head>', file);
+    const image = page === ARTICLE ? /<meta property="og:image" content="([^"]+)">/.exec(html)?.[1] : null;
+    html = setOne(html, /<\/head>/, () => structuredData(page, lang, title, image && unescape(image)) + '</head>', '</head>', file);
   }
   return html;
 }

@@ -25,9 +25,9 @@ Each public page has three addresses, so search engines can index every language
 
 The root pages are the source. `scripts/localize-website.mjs` keeps their Arabic text in step with `site-text.js`, writes the `he/` and `en/` copies, and maintains the title, description, canonical address, `hreflang` links, Open Graph tags, JSON-LD structured data and `sitemap.xml`. Never edit files in `he/` or `en/` by hand; they are overwritten. `node scripts/localize-website.mjs --check` fails when anything is out of date, and the verify script runs it.
 
-The list of pages that get language addresses must be identical in `LOCALIZED` (in the script) and `LOCAL_PAGES` (in `app.js`). The utility pages `404.html`, `offline.html` and `clinicflow.html` have one address and switch language in place.
+The list of pages that get language addresses must be identical in `LOCALIZED` (in the script) and `LOCAL_PAGES` (in `app.js`). The utility pages `404.html`, `offline.html` and `clinicflow.html` have one address and switch language in place. On the ADHD diagnosis article, `data-i18n-inline` accepts only Markdown bold and links, and the language buttons load the translated URL so rich text and structured data stay in sync.
 
-A small script in each page `<head>` picks the language: `?lang=` first, then the address (`/he/`, `/en/`), then, on Arabic addresses only, the language the visitor chose before. Old `?lang=he` links are redirected to the matching address. The language buttons switch the text in place and update the address without reloading.
+A small script in each page `<head>` picks the language: `?lang=` first, then the address (`/he/`, `/en/`), then, on Arabic addresses only, the language the visitor chose before. Old `?lang=he` links are redirected to the matching address. Outside the article, the language buttons switch the text in place and update the address without reloading.
 
 When shared files change, update the `VERSION` label in the script and the cache name and asset list in `sw.js`.
 

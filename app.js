@@ -7,7 +7,7 @@
   let language=window.magicLanguage||'ar';
   const words=key=>translations[language]?.[key]||'';
   // Pages with their own /he/ and /en/ address. Keep in sync with LOCALIZED in scripts/localize-website.mjs.
-  const LOCAL_PAGES=new Set(['index','adhd','child-development','moxo-home','private-care','treatments','about','activities','recruit','booking','contact','workshop-register','doctors','app','privacy','terms','accessibility']);
+  const LOCAL_PAGES=new Set(['index','adhd','child-development','moxo-home','private-care','treatments','about','activities','recruit','booking','contact','workshop-register','doctors','who-can-diagnose-adhd','app','privacy','terms','accessibility']);
   function localPath(pathname,lang){const m=/^\/(?:(?:he|en)\/)?(?:([a-z-]+)\.html)?$/.exec(pathname);if(!m||!LOCAL_PAGES.has(m[1]||'index'))return null;return (lang==='ar'?'/':'/'+lang+'/')+(m[1]?m[1]+'.html':'');}
   let installPrompt=null,installed=window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
   function updateInstallLabel(){document.querySelectorAll('[data-install]').forEach(b=>{b.disabled=installed;b.querySelector('[data-i18n]').textContent=words(installed?'u.installed':'u.install');});}
@@ -38,7 +38,18 @@
     try{history.replaceState(null,'',(local||current.pathname)+current.search+current.hash);}catch(_){}
     document.dispatchEvent(new CustomEvent('magic-language',{detail:{lang}}));updateInstallLabel();
   }
-  document.querySelectorAll('[data-lang-switch]').forEach(b=>b.addEventListener('click',()=>applyLanguage(b.dataset.langSwitch)));
+  document.querySelectorAll('[data-lang-switch]').forEach(b=>b.addEventListener('click',()=>{
+    const lang=b.dataset.langSwitch;
+    // Rich article copy and its search metadata are generated together for each URL.
+    const path=document.body.hasAttribute('data-lang-reload')&&localPath(location.pathname,lang);
+    if(!path){applyLanguage(lang);return;}
+    if(lang===language)return;
+    const url=new URL(location.href);
+    url.pathname=path;url.searchParams.delete('lang');
+    if(lang==='ar')url.searchParams.set('lang','ar');
+    try{localStorage.setItem('magic-language',lang);}catch(_){}
+    location.assign(url.href);
+  }));
   const toggle=document.querySelector('.menu-toggle'),menu=document.querySelector('.main-nav');
   function closeMenu(){menu?.classList.remove('open');toggle?.setAttribute('aria-expanded','false');}
   toggle?.addEventListener('click',()=>{const open=!menu.classList.contains('open');menu.classList.toggle('open',open);toggle.setAttribute('aria-expanded',String(open));});
